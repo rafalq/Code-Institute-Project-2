@@ -148,7 +148,9 @@ function seqPlayer(){
 	var computerIndexZ = sequence.indexOf(z);
 	var playerIndexZ = sequencePlayer.indexOf(z);
 	
-	if ((sequencePlayer[playerIndexZ] == sequence[computerIndexZ]) && (playerIndexZ  == computerIndexZ)){
+	for(var i = 0; i < sequence.length; i++){
+	
+	if ((sequencePlayer[i] == sequence[i]) && (playerIndexZ  == computerIndexZ)){
 		
 		var me= document.getElementById("score6");
 		me.innerHTML = "GOOOD!";
@@ -166,4 +168,5 @@ function seqPlayer(){
 			/*var Plse = document.getElementById("score10");
 			Plse.innerHTML = "Array item: " + sequencePlayer[playerIndexZ] + " |||  Index of player z: " +  sequencePlayer.indexOf(z) + " <br>COMPUTER array item: " + sequence[computerIndexZ]   + " |||  COMPUTER index Z: " + computerIndexZ;*/
 	}
+	}//for
 }//seqPlayer
