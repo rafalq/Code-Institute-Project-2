@@ -20,9 +20,9 @@ function drawColor(){
 	sequence.push(randomNo);
 	indexComputer++;
 	var r = document.getElementById("score");
-	r.innerHTML="Number: "+ randomNo;
+	r.innerHTML="RANDOM No: "+ randomNo;
 	var s = document.getElementById("score2");
-	s.innerHTML="Array: "+ sequence;
+	s.innerHTML="COMPUTER: "+ sequence;
 	flashButton(randomNo);
 }
 
@@ -60,19 +60,23 @@ function flashButton(x){
 
 //flashing colors by computer
 function flashSeq(){
+	
 	var on = false;
+//flashes in queue for every array item
 	for (let i=0; i<sequence.length; i++) {
     setTimeout( function timer(){
 	flashButton(sequence[i]);
 	var message = document.getElementById("score3");
-	message.innerHTML = "sequence i: " + sequence[i];
+	message.innerHTML = "RANDOM No: " + sequence[i];
     }, i*1000);
+	}//for
 	
 	// ON Timer
 	setTimeout( function(){
 	on = true;
 	var sage = document.getElementById("score10");
 	sage.innerHTML = "ON mode 3: " + on;
+	
 	var buttonYellow = document.getElementById("btnY");
 	buttonYellow.addEventListener("click", function(){
 	z = 4;
@@ -87,7 +91,7 @@ function flashSeq(){
 	});
     }, 1000*sequence.length);
 	
-	}//for
+	
 	
 //asa flashing sequence is finished, player can pick
 	var sage = document.getElementById("score9");
@@ -101,9 +105,8 @@ function flashSeq(){
 	z = 1;
 	//chyba nie musze push, bo nie potrzebuje array dla gracza
 	sequencePlayer.push(z);
-	indexPlayer++;
 	var Plseq = document.getElementById("score4");
-	Plseq.innerHTML = sequencePlayer + "index: " +  sequencePlayer.lastIndexOf(z);
+	Plseq.innerHTML = "PLAYER: " + sequencePlayer + " ||| last index: " +  sequencePlayer.lastIndexOf(z);
 	buttonGreen.classList.add("green");
 	setTimeout(function(){
 	buttonGreen.classList.remove("green");
@@ -116,7 +119,7 @@ function flashSeq(){
 	sequencePlayer.push(z);
 	indexPlayer++;
 	var Plseq = document.getElementById("score4");
-	Plseq.innerHTML = sequencePlayer + "index: " +  sequencePlayer.lastIndexOf(z);
+	Plseq.innerHTML = "PLAYER: " + sequencePlayer + " ||| last index: " +  sequencePlayer.lastIndexOf(z);
 	buttonRed.classList.add("red");
 	setTimeout(function(){
 	buttonRed.classList.remove("red");
@@ -129,7 +132,7 @@ function flashSeq(){
 	sequencePlayer.push(z);
 	indexPlayer++;
 	var Plseq = document.getElementById("score4");
-	Plseq.innerHTML = sequencePlayer + "index: " +  sequencePlayer.lastIndexOf(z);
+	Plseq.innerHTML = "PLAYER: " + sequencePlayer + " ||| last index: " +  sequencePlayer.lastIndexOf(z);
 	buttonBlue.classList.add("blue");
 	setTimeout(function(){
 	buttonBlue.classList.remove("blue");
@@ -145,16 +148,22 @@ function seqPlayer(){
 	var computerIndexZ = sequence.indexOf(z);
 	var playerIndexZ = sequencePlayer.indexOf(z);
 	
-	if ((playerIndexZ && indexPlayer) == (computerIndexZ  && indexComputer)){
+	if ((sequencePlayer[playerIndexZ] == sequence[computerIndexZ]) && (playerIndexZ  == computerIndexZ)){
 		
 		var me= document.getElementById("score6");
 		me.innerHTML = "GOOOD!";
+		
 			var Plseq = document.getElementById("score9");
-			Plseq.innerHTML = sequencePlayer[playerIndexZ] + "   Index of player z: " +  sequencePlayer.indexOf(z) + " <br>COMPUTER index: " + computerIndexZ + "   index++: " + indexComputer;
+			Plseq.innerHTML = "PLAYER: " + sequencePlayer[playerIndexZ] + " |||  index: " +  sequencePlayer.indexOf(z) + 
+			" <br>COMPUTER: " + sequence[computerIndexZ]   + " |||  index: " + computerIndexZ;
 	}else {
 		var me= document.getElementById("score6");
 		me.innerHTML = "NO!";
-			var Plse = document.getElementById("score10");
-			Plse.innerHTML = sequencePlayer[playerIndexZ] + "   Index of player z: " +  sequencePlayer.indexOf(z) + " <br>COMPUTER index: " + computerIndexZ + "   index++: " + indexComputer; ;
+		
+			var Plseq = document.getElementById("score9");
+			Plseq.innerHTML = "PLAYER: " + sequencePlayer[playerIndexZ] + " |||  index: " +  sequencePlayer.indexOf(z) + 
+			" <br>COMPUTER: " + sequence[computerIndexZ]   + " |||  index: " + computerIndexZ;
+			/*var Plse = document.getElementById("score10");
+			Plse.innerHTML = "Array item: " + sequencePlayer[playerIndexZ] + " |||  Index of player z: " +  sequencePlayer.indexOf(z) + " <br>COMPUTER array item: " + sequence[computerIndexZ]   + " |||  COMPUTER index Z: " + computerIndexZ;*/
 	}
 }//seqPlayer
