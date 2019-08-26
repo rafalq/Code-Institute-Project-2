@@ -60,17 +60,31 @@ function flashButton(x){
 
 //flashing colors by computer
 function flashSeq(){
-	var on;
+	var on = false;
 	for (let i=0; i<sequence.length; i++) {
     setTimeout( function timer(){
 	flashButton(sequence[i]);
 	var message = document.getElementById("score3");
 	message.innerHTML = "sequence i: " + sequence[i];
     }, i*1000);
+	
+	// ON Timer
 	setTimeout( function(){
 	on = true;
 	var sage = document.getElementById("score10");
 	sage.innerHTML = "ON mode 3: " + on;
+	var buttonYellow = document.getElementById("btnY");
+	buttonYellow.addEventListener("click", function(){
+	z = 4;
+	sequencePlayer.push(z);
+	indexPlayer++;
+	var Plseq = document.getElementById("score4");
+	Plseq.innerHTML = "Player array: "+ sequencePlayer + " the last index: " +  sequencePlayer.lastIndexOf(z);
+	buttonYellow.classList.add("yellow");
+	setTimeout(function(){
+	buttonYellow.classList.remove("yellow");
+	}, 500);
+	});
     }, 1000*sequence.length);
 	
 	}//for
@@ -122,29 +136,25 @@ function flashSeq(){
 	}, 500);
 	});
 
-	var buttonYellow = document.getElementById("btnY");
-	buttonYellow.addEventListener("click", function(){
-	z = 4;
-	sequencePlayer.push(z);
-	indexPlayer++;
-	var Plseq = document.getElementById("score4");
-	Plseq.innerHTML = sequencePlayer + "index: " +  sequencePlayer.lastIndexOf(z);
-	buttonYellow.classList.add("yellow");
-	setTimeout(function(){
-	buttonYellow.classList.remove("yellow");
-	}, 500);
-	});
+	
 //}//on
 
 //check the both sequences
 function seqPlayer(){
-	if ((sequencePlayer.indexOf(z) && indexPlayer) == (sequence.indexOf(z) && indexComputer)){
+	
+	var computerIndexZ = sequence.indexOf(z);
+	var playerIndexZ = sequencePlayer.indexOf(z);
+	
+	if ((playerIndexZ && indexPlayer) == (computerIndexZ  && indexComputer)){
+		
 		var me= document.getElementById("score6");
 		me.innerHTML = "GOOOD!";
-		var Plseq = document.getElementById("score4");
-Plseq.innerHTML = sequencePlayer + "index: " +  sequencePlayer.lastIndexOf(z) + " COMPUTER: " + sequence.lastIndexOf(z);
-	}else{
+			var Plseq = document.getElementById("score9");
+			Plseq.innerHTML = sequencePlayer[playerIndexZ] + "   Index of player z: " +  sequencePlayer.indexOf(z) + " <br>COMPUTER index: " + computerIndexZ + "   index++: " + indexComputer;
+	}else {
 		var me= document.getElementById("score6");
 		me.innerHTML = "NO!";
+			var Plse = document.getElementById("score10");
+			Plse.innerHTML = sequencePlayer[playerIndexZ] + "   Index of player z: " +  sequencePlayer.indexOf(z) + " <br>COMPUTER index: " + computerIndexZ + "   index++: " + indexComputer; ;
 	}
 }//seqPlayer
