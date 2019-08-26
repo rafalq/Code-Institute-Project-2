@@ -1,3 +1,7 @@
+//on = false after win no work!
+//PC multiplies player array items if click more than once
+// RESET dziala oprocz on = false, klawisze sa ciagle odblokowane
+
 var sequence = [];
 var sequencePlayer = [];
 var z; 
@@ -101,7 +105,7 @@ function flashSeq(){
 				seqPlayer();
 			});
 		}//if		
-	}, 1000*sequence.length);
+	}, 800*sequence.length);
 }//flashSeq	
     
 //check the both sequences
@@ -118,8 +122,8 @@ function seqPlayer(){
 						noMessage.innerHTML = "WIN!"
 						sequencePlayer = [];
 						turn++;
+						drawColor();
 						on = false;
-						drawColor();	
 					}
 			}else {
 				var noMessage= document.getElementById("score2");
@@ -129,3 +133,17 @@ function seqPlayer(){
 			}//else
 		}//for
 }//seqPlayer
+
+function resetGame(){
+	sequence = [];
+	sequencePlayer = [];
+	turn = 1;
+	highScore = 0;
+	on = false;	
+	
+	var computerArray = document.getElementById("score1");
+	computerArray.innerHTML="TURN: " + turn + "<br>COMPUTER: "+ sequence;
+	
+	var noMessage= document.getElementById("score2");
+	noMessage.innerHTML = "-"
+}
