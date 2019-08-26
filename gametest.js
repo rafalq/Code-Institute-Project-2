@@ -78,25 +78,10 @@ function flashSeq(){
 	on = true;
 	var sage = document.getElementById("score10");
 	sage.innerHTML = "ON mode 3: " + on;
-	
-	var buttonYellow = document.getElementById("btnY");
-	buttonYellow.addEventListener("click", function(){
-	z = 4;
-	sequencePlayer.push(z);
-	indexPlayer++;
-	var Plseq = document.getElementById("score4");
-	Plseq.innerHTML = "Player array: "+ sequencePlayer + " the last index: " +  sequencePlayer.lastIndexOf(z);
-	buttonYellow.classList.add("yellow");
-	setTimeout(function(){
-	buttonYellow.classList.remove("yellow");
-	}, 500);
-	});
-    }, 1000*sequence.length);
-	
+	if(on){	
 	var buttonGreen = document.getElementById("btnG");
 	buttonGreen.addEventListener("click", function(){
 	z = 1;
-	//chyba nie musze push, bo nie potrzebuje array dla gracza
 	sequencePlayer.push(z);
 	var Plseq = document.getElementById("score4");
 	Plseq.innerHTML = "PLAYER: " + sequencePlayer + " ||| last index: " +  sequencePlayer.lastIndexOf(z);
@@ -110,7 +95,6 @@ function flashSeq(){
 	buttonRed.addEventListener("click", function(){
 	z = 2;
 	sequencePlayer.push(z);
-	indexPlayer++;
 	var Plseq = document.getElementById("score4");
 	Plseq.innerHTML = "PLAYER: " + sequencePlayer + " ||| last index: " +  sequencePlayer.lastIndexOf(z);
 	buttonRed.classList.add("red");
@@ -123,7 +107,6 @@ function flashSeq(){
 	buttonBlue.addEventListener("click", function(){
 	z = 3;
 	sequencePlayer.push(z);
-	indexPlayer++;
 	var Plseq = document.getElementById("score4");
 	Plseq.innerHTML = "PLAYER: " + sequencePlayer + " ||| last index: " +  sequencePlayer.lastIndexOf(z);
 	buttonBlue.classList.add("blue");
@@ -132,6 +115,20 @@ function flashSeq(){
 	}, 500);
 	});
 	
+	var buttonYellow = document.getElementById("btnY");
+	buttonYellow.addEventListener("click", function(){
+	z = 4;
+	sequencePlayer.push(z);
+	var Plseq = document.getElementById("score4");
+	Plseq.innerHTML = "Player array: "+ sequencePlayer + " the last index: " +  sequencePlayer.lastIndexOf(z);
+	buttonYellow.classList.add("yellow");
+	setTimeout(function(){
+	buttonYellow.classList.remove("yellow");
+	}, 500);
+	});
+    }//if
+	
+	}, 1000*sequence.length);
 //asa flashing sequence is finished, player can pick
 	var sage = document.getElementById("score9");
 	sage.innerHTML = "ON mode 3: " + on;
@@ -142,25 +139,25 @@ function seqPlayer(){
 	
 	var computerIndexZ = sequence.indexOf(z);
 	var playerIndexZ = sequencePlayer.indexOf(z);
+	 
+	for(var i = 0; i < sequencePlayer.length; i++){
 	
-	for(var i = 0; i < sequence.length; i++){
-	
-	if ((sequencePlayer[i] == sequence[i]) && (playerIndexZ  == computerIndexZ)){
+	if (sequencePlayer[i] == sequence[i]){
 		
 		var me= document.getElementById("score6");
 		me.innerHTML = "GOOOD!";
 		
 			var Plseq = document.getElementById("score9");
-			Plseq.innerHTML = "PLAYER: " + sequencePlayer[playerIndexZ] + " |||  index: " +  sequencePlayer.indexOf(z) + 
-			" <br>COMPUTER: " + sequence[computerIndexZ]   + " |||  index: " + computerIndexZ;
+			Plseq.innerHTML = "PLAYER: " + sequencePlayer[i] + " |||  index: " +  sequencePlayer.indexOf(z) + 
+			" <br>COMPUTER: " + sequence[i]   + " |||  index: " + computerIndexZ;
 	}else {
 		var me= document.getElementById("score6");
 		me.innerHTML = "NO!";
 		
 			var Plseq = document.getElementById("score9");
-			Plseq.innerHTML = "PLAYER: " + sequencePlayer[playerIndexZ] + " |||  index: " +  sequencePlayer.indexOf(z) + 
-			" <br>COMPUTER: " + sequence[computerIndexZ]   + " |||  index: " + computerIndexZ;
-			break;
+			Plseq.innerHTML = "PLAYER: " + sequencePlayer[i] + " |||  index: " +  sequencePlayer.indexOf(z) + 
+			" <br>COMPUTER: " + sequence[i]   + " |||  index: " + computerIndexZ;
+	break;		
 			/*var Plse = document.getElementById("score10");
 			Plse.innerHTML = "Array item: " + sequencePlayer[playerIndexZ] + " |||  Index of player z: " +  sequencePlayer.indexOf(z) + " <br>COMPUTER array item: " + sequence[computerIndexZ]   + " |||  COMPUTER index Z: " + computerIndexZ;*/
 	}
