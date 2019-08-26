@@ -1,6 +1,7 @@
 var sequence = [];
 var sequencePlayer = [];
-var z;
+var z; 
+var turn = 1;
 //BUTTONS
 var buttonGreen = document.getElementById("btnG");
 var buttonRed = document.getElementById("btnR");
@@ -11,10 +12,9 @@ var buttonYellow = document.getElementById("btnY");
 function drawColor(){
 	randomNo = Math.floor(Math.random()*4+1);
 	sequence.push(randomNo);
-	flash(randomNo);
 	
 	var computerArray = document.getElementById("score1");
-	computerArray.innerHTML="COMPUTER: "+ sequence;
+	computerArray.innerHTML="TURN: " + turn + "<br>COMPUTER: "+ sequence;
 }
 
 //picking the button to flash		
@@ -104,14 +104,18 @@ function flashSeq(){
     
 //check the both sequences
 function seqPlayer(){
-	var computerIndexZ = sequence.indexOf(z);
-	var playerIndexZ = sequencePlayer.indexOf(z); 
-	
+	var correct = 0;
 		for(var i = 0; i < sequencePlayer.length; i++){
-		
+			
 			if (sequencePlayer[i] == sequence[i]){
 				var goodMessage = document.getElementById("score2");
 				goodMessage.innerHTML = "GOOD!";
+				correct++;
+					if(correct == sequence.length){
+						var noMessage= document.getElementById("score2");
+						noMessage.innerHTML = "WIN!"
+						turn++;
+					}
 			}else {
 				var noMessage= document.getElementById("score2");
 				noMessage.innerHTML = "NO!"
