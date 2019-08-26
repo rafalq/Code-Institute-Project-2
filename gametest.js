@@ -72,6 +72,8 @@ function flashSeq(){
 	}//for
 	
 	// ON Timer
+	//Buttons OPTIONS: click with flashing
+	
 	setTimeout( function(){
 	on = true;
 	var sage = document.getElementById("score10");
@@ -91,15 +93,6 @@ function flashSeq(){
 	});
     }, 1000*sequence.length);
 	
-	
-	
-//asa flashing sequence is finished, player can pick
-	var sage = document.getElementById("score9");
-	sage.innerHTML = "ON mode 3: " + on;
-}//flashSeq	
-    
-//Buttons OPTIONS: click with flashing
-//if(on){
 	var buttonGreen = document.getElementById("btnG");
 	buttonGreen.addEventListener("click", function(){
 	z = 1;
@@ -138,10 +131,12 @@ function flashSeq(){
 	buttonBlue.classList.remove("blue");
 	}, 500);
 	});
-
 	
-//}//on
-
+//asa flashing sequence is finished, player can pick
+	var sage = document.getElementById("score9");
+	sage.innerHTML = "ON mode 3: " + on;
+}//flashSeq	
+    
 //check the both sequences
 function seqPlayer(){
 	
@@ -165,6 +160,7 @@ function seqPlayer(){
 			var Plseq = document.getElementById("score9");
 			Plseq.innerHTML = "PLAYER: " + sequencePlayer[playerIndexZ] + " |||  index: " +  sequencePlayer.indexOf(z) + 
 			" <br>COMPUTER: " + sequence[computerIndexZ]   + " |||  index: " + computerIndexZ;
+			break;
 			/*var Plse = document.getElementById("score10");
 			Plse.innerHTML = "Array item: " + sequencePlayer[playerIndexZ] + " |||  Index of player z: " +  sequencePlayer.indexOf(z) + " <br>COMPUTER array item: " + sequence[computerIndexZ]   + " |||  COMPUTER index Z: " + computerIndexZ;*/
 	}
