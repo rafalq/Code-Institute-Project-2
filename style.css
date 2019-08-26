@@ -16,14 +16,11 @@
 	background-color: goldenrod;
 }
 
-
-
 .green{
 	animation-name: green;
 	animation-duration: .4s;
 	animation-direction: alternate;
 }
-
 @keyframes green {
   from {background-color: darkgreen;}
   to {background-color: lightgreen;}
@@ -34,7 +31,6 @@
 	animation-duration: .4s;
 	animation-direction: alternate;
 }
-
 @keyframes red {
   from {background-color: darkred;}
   to {background-color: tomato;}
@@ -45,7 +41,6 @@
 	animation-duration: .4s;
 	animation-direction: alternate;
 }
-
 @keyframes blue {
   from {background-color: darkblue;}
   to {background-color: lightskyblue;}
@@ -56,7 +51,6 @@
 	animation-duration: .4s;
 	animation-direction: alternate;
 }
-
 @keyframes yellow {
   from {background-color: goldenrod;}
   to {background-color: yellow;}
