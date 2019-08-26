@@ -2,6 +2,8 @@ var sequence = [];
 var sequencePlayer = [];
 var z; 
 var turn = 1;
+var highScore = 0;
+var on = false;	
 //BUTTONS
 var buttonGreen = document.getElementById("btnG");
 var buttonRed = document.getElementById("btnR");
@@ -49,12 +51,12 @@ function flash(z){
 
 //flashing colors by computer
 function flashSeq(){	
-	var on = false;	
+	
 //flashes in queue for every array item
 		for (let i=0; i<sequence.length; i++) {
 		setTimeout( function timer(){
 		flash(sequence[i]);
-		}, i*1000);
+		}, i*800);
 		}//for
 	
 	// ON Timer, turning on after the sequence
@@ -114,11 +116,15 @@ function seqPlayer(){
 					if(correct == sequence.length){
 						var noMessage= document.getElementById("score2");
 						noMessage.innerHTML = "WIN!"
+						sequencePlayer = [];
 						turn++;
+						on = false;
+						drawColor();	
 					}
 			}else {
 				var noMessage= document.getElementById("score2");
 				noMessage.innerHTML = "NO!"
+				sequence = [];
 			break;		
 			}//else
 		}//for
