@@ -1,10 +1,12 @@
-
+//type no for number of numbers to guess
+//if you press start button fast!!
 var sequence = [];
 var sequencePlayer = [];
 var z; 
-var counter = 1;
+var counter = 0;
 var on;
 var score;
+
 //BUTTONS
 var buttonGreen = document.getElementById("btnG");
 var buttonRed = document.getElementById("btnR");
@@ -16,7 +18,7 @@ function start(){
 	on = false;
 	
 	if(sequence == 0){
-		counter = 1;
+		counter = 0;
 	}
 	
 	drawColor();
@@ -33,7 +35,7 @@ function resetGame(){
 	score = document.getElementById("score");
 	score.innerHTML = "";
 	counterNo = document.getElementById("counter");
-	counterNo.innerHTML = "COUNTER: " + counter + "<br>COMPUTER: "+ sequence;
+	counterNo.innerHTML = "COUNTER: " + counter;
 	noMessage= document.getElementById("check");
 	noMessage.innerHTML = "";
 }//resetGame
@@ -45,9 +47,10 @@ function drawColor(){
 	
 	randomNo = Math.floor(Math.random()*4+1);
 	sequence.push(randomNo);
+	counter++;
 	
 	var counterNo = document.getElementById("counter");
-	counterNo.innerHTML = "COUNTER: " + counter + "<br>COMPUTER: "+ sequence;
+	counterNo.innerHTML = "COUNTER: " + counter;
 }
 
 //picking the button to flash		
@@ -157,7 +160,6 @@ function flashSeq(){
 				noMessage.innerHTML = "CORRECT!";
 				sequencePlayer = [];
 				on = false;
-				counter++;
 			}//if2
 		}//for
 }//check()
