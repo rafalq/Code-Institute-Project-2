@@ -23,7 +23,7 @@ function onMode(){
 onMode();
 
 function drawColor(){
-	on = 
+	on = false;
 	randomNo = Math.floor(Math.random()*4+1);
 	sequence.push(randomNo);
 	

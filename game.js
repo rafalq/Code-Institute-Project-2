@@ -6,6 +6,7 @@ var z;
 var counter = 0;
 var on;
 var score;
+var click = 0;
 
 //BUTTONS
 var buttonGreen = document.getElementById("btnG");
@@ -13,21 +14,43 @@ var buttonRed = document.getElementById("btnR");
 var buttonBlue = document.getElementById("btnB");
 var buttonYellow = document.getElementById("btnY");
 
-//START button
-function start(){
+//COUNTER button
+function addNo(){
 	on = false;
 	
 	if(sequence == 0){
 		counter = 0;
 	}
-	
+	counter++;
+	counterNo = document.getElementById("counter");
+	counterNo.innerHTML = "COUNTER: " + counter;
 	drawColor();
-	flashSeq();
 }
+
+
+//START button
+function start(){
+	on = false;
+	
+	if(click < 4){
+		flashSeq();
+		click++;
+	}
+	if(sequence == 0){
+		counter = 0;
+	}
+	if(click == 4){
+		resetGame();
+	}
+}//startS
+	
+
+
 //RESET button
 function resetGame(){
 	sequence = [];
 	sequencePlayer = [];
+	click = 0;
 	counter = 0;
 	on = false; 
 	console.log(sequence = []);
@@ -47,7 +70,6 @@ function drawColor(){
 	
 	randomNo = Math.floor(Math.random()*4+1);
 	sequence.push(randomNo);
-	counter++;
 	
 	var counterNo = document.getElementById("counter");
 	counterNo.innerHTML = "COUNTER: " + counter;
@@ -153,12 +175,14 @@ function flashSeq(){
 				sequencePlayer = [];
 				score = document.getElementById("score");
 				score.innerHTML = "HIGH SCORE: " + (counter-1);
+				click = 0;
 				break;
 			}//else
 			if(correct == sequence.length){
 				var noMessage= document.getElementById("check");
 				noMessage.innerHTML = "CORRECT!";
 				sequencePlayer = [];
+				click = 0;
 				on = false;
 			}//if2
 		}//for
