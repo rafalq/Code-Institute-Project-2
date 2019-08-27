@@ -1,21 +1,29 @@
-//on = false after win no work!
-//START multiplies player array items if click more than once
-// RESET dziala oprocz on = false, klawisze sa ciagle odblokowane
 
 var sequence = [];
 var sequencePlayer = [];
 var z; 
 var turn = 1;
-var highScore = 0;
-var on = false;	
+var score;
+var on;
+
 //BUTTONS
 var buttonGreen = document.getElementById("btnG");
 var buttonRed = document.getElementById("btnR");
 var buttonBlue = document.getElementById("btnB");
 var buttonYellow = document.getElementById("btnY");
+var buttonStart = document.getElementById("start");
 
+function random(){
+	on = false;
+	if(sequence==0){turn = 1;}
+	drawColor();
+	flashSeq();
+	console.log(on);
+}
 //drawing a random color and adding to the array
 function drawColor(){
+	var noMessage= document.getElementById("score2");
+				noMessage.innerHTML = "";
 	randomNo = Math.floor(Math.random()*4+1);
 	sequence.push(randomNo);
 	
@@ -55,85 +63,94 @@ function flash(z){
 
 //flashing colors by computer
 function flashSeq(){	
-	
+	sequencePlayer = [];
 //flashes in queue for every array item
 		for (let i=0; i<sequence.length; i++) {
 		setTimeout( function timer(){
 		flash(sequence[i]);
+		if(i==sequence.length-1){on=true}
 		}, i*800);
 		}//for
-	
-	// ON Timer, turning on after the sequence
-	//Buttons OPTIONS: click with flashing	
-	setTimeout( function(){
-		on = true;	
-		if(on){
+}//flashSeq	
+
 			//****GREEN ****	
-			var buttonGreen = document.getElementById("btnG");
 			buttonGreen.addEventListener("click", function(){
+				if(on){
 				z = 1;
 				flash(z);
 				sequencePlayer.push(z);
 				seqPlayer();
+				}//if
 			});
 			
 			//****RED****
-			var buttonRed = document.getElementById("btnR");
 			buttonRed.addEventListener("click", function(){
+				if(on){
 				z = 2;
 				flash(z);
 				sequencePlayer.push(z);
 				seqPlayer();
+				}//if
 			});
 			
 			//****BLUE****
-			var buttonBlue = document.getElementById("btnB");
 			buttonBlue.addEventListener("click", function(){
+				if(on){
 				z = 3;
 				flash(z);
 				sequencePlayer.push(z);
 				seqPlayer();
+				}//if
 			});
 			
 			//****YELLOW****
-			var buttonYellow = document.getElementById("btnY");
 			buttonYellow.addEventListener("click", function(){
+				if(on){
 				z = 4;
 				flash(z);
 				sequencePlayer.push(z);
 				seqPlayer();
+				}//if
 			});
-		}//if		
-	}, 800*sequence.length);
-}//flashSeq	
-    
-//check the both sequences
-function seqPlayer(){
-	var correct = 0;
+		console.log(on);
+
+
+		function seqPlayer(){
+		console.log(sequencePlayer);
+		console.log(on);
+		var correct = 0;
 		for(var i = 0; i < sequencePlayer.length; i++){
 			
 			if (sequencePlayer[i] == sequence[i]){
 				var goodMessage = document.getElementById("score2");
-				goodMessage.innerHTML = "GOOD!";
-				correct++;
-					if(correct == sequence.length){
-						var noMessage= document.getElementById("score2");
-						noMessage.innerHTML = "WIN!"
-						sequencePlayer = [];
-						on = false;
-						turn++;
-						drawColor();
-						
-					}
+				goodMessage.innerHTML = "...";
+				correct++;		
 			}else {
 				var noMessage= document.getElementById("score2");
-				noMessage.innerHTML = "NO!"
+				noMessage.innerHTML = "WRONG!"
+				on = false;
 				sequence = [];
-			break;		
+				sequencePlayer = [];
+				score = document.getElementById("score");
+				score.innerHTML = "HIGH SCORE: " + turn;
+				turn = ""
+				break;
 			}//else
+			if(correct == sequence.length){
+				var noMessage= document.getElementById("score2");
+				noMessage.innerHTML = "CORRECT!"
+				sequencePlayer = [];
+				on = false;
+				turn++;
+				console.log(on);
+			}//if2
 		}//for
-}//seqPlayer
+}//seqPlayer	
 
+	
+
+
+//check the both sequences
 function resetGame(){
 	sequence = [];
 	sequencePlayer = [];
@@ -145,5 +162,7 @@ function resetGame(){
 	computerArray.innerHTML="TURN: " + turn + "<br>COMPUTER: "+ sequence;
 	
 	var noMessage= document.getElementById("score2");
-	noMessage.innerHTML = "-"
-}
+	noMessage.innerHTML = "-";
+}//resetGame
+//you can play as long as you want
+//after loosing, you can keep playing and  hold the bnumber of turns or reset the counter. 
