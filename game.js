@@ -1,11 +1,11 @@
-//type no for number of numbers to guess
-//if you press start button fast!!
+//poprawic high score, powinien byc rowny
 var sequence = [];
 var sequencePlayer = [];
 var z; 
 var counter = 0;
 var on;
 var score;
+var highScore = 0;
 var click = 0;
 
 //BUTTONS
@@ -174,7 +174,7 @@ function flashSeq(){
 				sequence = [];
 				sequencePlayer = [];
 				score = document.getElementById("score");
-				score.innerHTML = "HIGH SCORE: " + (counter-1);
+				score.innerHTML = "HIGH SCORE: " + highScore;
 				click = 0;
 				break;
 			}//else
@@ -183,6 +183,7 @@ function flashSeq(){
 				noMessage.innerHTML = "CORRECT!";
 				sequencePlayer = [];
 				click = 0;
+				highScore = counter;
 				on = false;
 			}//if2
 		}//for

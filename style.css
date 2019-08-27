@@ -1,7 +1,18 @@
 .b{
 	height: 100px;
 	width: 200px;
-	margin: 2px;
+}
+.greyOnes{
+	height: 100px;
+	width: 100px;
+	padding: 20px;
+}
+#addNo{
+	background-color: black;
+	font-size: 30px;
+	color: white;
+	height: 50px;
+	width: 50px;
 }
 #btnG{
 	background-color: darkgreen;
