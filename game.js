@@ -2,33 +2,52 @@
 var sequence = [];
 var sequencePlayer = [];
 var z; 
-var turn = 1;
-var score;
+var counter = 1;
 var on;
-
+var score;
 //BUTTONS
 var buttonGreen = document.getElementById("btnG");
 var buttonRed = document.getElementById("btnR");
 var buttonBlue = document.getElementById("btnB");
 var buttonYellow = document.getElementById("btnY");
-var buttonStart = document.getElementById("start");
 
-function random(){
+//START button
+function start(){
 	on = false;
-	if(sequence==0){turn = 1;}
+	
+	if(sequence == 0){
+		counter = 1;
+	}
+	
 	drawColor();
 	flashSeq();
-	console.log(on);
 }
+//RESET button
+function resetGame(){
+	sequence = [];
+	sequencePlayer = [];
+	counter = 0;
+	on = false; 
+	console.log(sequence = []);
+	
+	score = document.getElementById("score");
+	score.innerHTML = "";
+	counterNo = document.getElementById("counter");
+	counterNo.innerHTML = "COUNTER: " + counter + "<br>COMPUTER: "+ sequence;
+	noMessage= document.getElementById("check");
+	noMessage.innerHTML = "";
+}//resetGame
+
 //drawing a random color and adding to the array
 function drawColor(){
-	var noMessage= document.getElementById("score2");
-				noMessage.innerHTML = "";
+	var noMessage= document.getElementById("check");
+	noMessage.innerHTML = "";
+	
 	randomNo = Math.floor(Math.random()*4+1);
 	sequence.push(randomNo);
 	
-	var computerArray = document.getElementById("score1");
-	computerArray.innerHTML="TURN: " + turn + "<br>COMPUTER: "+ sequence;
+	var counterNo = document.getElementById("counter");
+	counterNo.innerHTML = "COUNTER: " + counter + "<br>COMPUTER: "+ sequence;
 }
 
 //picking the button to flash		
@@ -38,25 +57,25 @@ function flash(z){
 			buttonGreen.classList.add("green");
 				setTimeout(function(){
 				buttonGreen.classList.remove("green");
-				}, 400);
+				}, 300);
 		break;
 		case 2:
 			buttonRed.classList.add("red");
 				setTimeout(function(){
 				buttonRed.classList.remove("red");
-				}, 400);
+				}, 300);
 		break;
 		case 3:
 			buttonBlue.classList.add("blue");
 				setTimeout(function(){
 				buttonBlue.classList.remove("blue");
-				}, 400);
+				}, 300);
 		break;		
 		case 4:
 			buttonYellow.classList.add("yellow");
 				setTimeout(function(){
 				buttonYellow.classList.remove("yellow");
-				}, 400);
+				}, 300);
 		break;	
 	}//switch
 }//flashButton
@@ -64,105 +83,81 @@ function flash(z){
 //flashing colors by computer
 function flashSeq(){	
 	sequencePlayer = [];
-//flashes in queue for every array item
-		for (let i=0; i<sequence.length; i++) {
-		setTimeout( function timer(){
-		flash(sequence[i]);
-		if(i==sequence.length-1){on=true}
-		}, i*800);
+		//flashes in queue for every array item
+		for (let i=0; i < sequence.length; i++) {
+			setTimeout( function timer(){
+				flash(sequence[i]);
+					if(i == sequence.length-1){
+						on = true
+					}//if
+			}, i*800);//setTimeout
 		}//for
 }//flashSeq	
 
 			//****GREEN ****	
 			buttonGreen.addEventListener("click", function(){
 				if(on){
-				z = 1;
-				flash(z);
-				sequencePlayer.push(z);
-				seqPlayer();
+					z = 1;
+					flash(z);
+					sequencePlayer.push(z);
+					check();
 				}//if
 			});
 			
 			//****RED****
 			buttonRed.addEventListener("click", function(){
 				if(on){
-				z = 2;
-				flash(z);
-				sequencePlayer.push(z);
-				seqPlayer();
+					z = 2;
+					flash(z);
+					sequencePlayer.push(z);
+					check();
 				}//if
 			});
 			
 			//****BLUE****
 			buttonBlue.addEventListener("click", function(){
 				if(on){
-				z = 3;
-				flash(z);
-				sequencePlayer.push(z);
-				seqPlayer();
+					z = 3;
+					flash(z);
+					sequencePlayer.push(z);
+					check();
 				}//if
 			});
 			
 			//****YELLOW****
 			buttonYellow.addEventListener("click", function(){
 				if(on){
-				z = 4;
-				flash(z);
-				sequencePlayer.push(z);
-				seqPlayer();
+					z = 4;
+					flash(z);
+					sequencePlayer.push(z);
+					check();
 				}//if
 			});
-		console.log(on);
-
-
-		function seqPlayer(){
-		console.log(sequencePlayer);
-		console.log(on);
+		
+		function check(){
 		var correct = 0;
 		for(var i = 0; i < sequencePlayer.length; i++){
 			
 			if (sequencePlayer[i] == sequence[i]){
-				var goodMessage = document.getElementById("score2");
+				var goodMessage = document.getElementById("check");
 				goodMessage.innerHTML = "...";
 				correct++;		
 			}else {
-				var noMessage= document.getElementById("score2");
-				noMessage.innerHTML = "WRONG!"
+				var noMessage= document.getElementById("check");
+				noMessage.innerHTML = "WRONG!";
 				on = false;
 				sequence = [];
 				sequencePlayer = [];
 				score = document.getElementById("score");
-				score.innerHTML = "HIGH SCORE: " + turn;
-				turn = ""
+				score.innerHTML = "HIGH SCORE: " + (counter-1);
 				break;
 			}//else
 			if(correct == sequence.length){
-				var noMessage= document.getElementById("score2");
-				noMessage.innerHTML = "CORRECT!"
+				var noMessage= document.getElementById("check");
+				noMessage.innerHTML = "CORRECT!";
 				sequencePlayer = [];
 				on = false;
-				turn++;
-				console.log(on);
+				counter++;
 			}//if2
 		}//for
-}//seqPlayer	
-
-	
-
-
-//check the both sequences
-function resetGame(){
-	sequence = [];
-	sequencePlayer = [];
-	turn = 1;
-	highScore = 0;
-	on = false;	
-	
-	var computerArray = document.getElementById("score1");
-	computerArray.innerHTML="TURN: " + turn + "<br>COMPUTER: "+ sequence;
-	
-	var noMessage= document.getElementById("score2");
-	noMessage.innerHTML = "-";
-}//resetGame
-//you can play as long as you want
-//after loosing, you can keep playing and  hold the bnumber of turns or reset the counter. 
+}//check()
