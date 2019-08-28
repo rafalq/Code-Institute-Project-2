@@ -78,3 +78,13 @@
   from {background-color: goldenrod;}
   to {background-color: yellow;}
 }
+
+.numbers{
+	background-color: black;
+	color: white;
+	height: 50px;
+	width: 50px;
+	text-align: center;
+	font-size: 30px;
+	margin: auto;
+}

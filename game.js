@@ -24,7 +24,7 @@ function addNo(){
 	}
 	counter++;
 	counterNo = document.getElementById("counter");
-	counterNo.innerHTML = "COUNTER: " + counter;
+	counterNo.innerHTML = counter;
 	drawColor();
 }
 
@@ -65,7 +65,7 @@ function resetGame(){
 	score = document.getElementById("score");
 	score.innerHTML = "";
 	counterNo = document.getElementById("counter");
-	counterNo.innerHTML = "COUNTER: " + counter;
+	counterNo.innerHTML = counter;
 	noMessage= document.getElementById("check");
 	noMessage.innerHTML = "";
 }//resetGame
@@ -79,7 +79,7 @@ function drawColor(){
 	sequence.push(randomNo);
 	
 	var counterNo = document.getElementById("counter");
-	counterNo.innerHTML = "COUNTER: " + counter;
+	counterNo.innerHTML = counter;
 }
 
 //picking the button to flash		
