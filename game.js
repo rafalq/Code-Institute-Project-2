@@ -7,6 +7,7 @@ var on;
 var score;
 var highScore = 0;
 var click = 0;
+var choices = 0;
 
 //BUTTONS
 var buttonGreen = document.getElementById("btnG");
@@ -32,7 +33,7 @@ function addNo(){
 function start(){
 	on = false;
 	
-	if(click < 4){
+	if(click < 4 && counter > 0){
 		flashSeq();
 		click++;
 	}
@@ -41,6 +42,11 @@ function start(){
 	}
 	if(click == 4){
 		resetGame();
+	}
+	
+	if(counter > 0){
+	choices = document.getElementById("No");
+	choices.innerHTML = click;
 	}
 }//startS
 	
@@ -53,7 +59,8 @@ function resetGame(){
 	click = 0;
 	counter = 0;
 	on = false; 
-	console.log(sequence = []);
+	choices = document.getElementById("No");
+	choices.innerHTML = click;
 	
 	score = document.getElementById("score");
 	score.innerHTML = "";
@@ -183,6 +190,8 @@ function flashSeq(){
 				noMessage.innerHTML = "CORRECT!";
 				sequencePlayer = [];
 				click = 0;
+				choices = document.getElementById("No");
+				choices.innerHTML = click;
 				highScore = counter;
 				on = false;
 			}//if2
