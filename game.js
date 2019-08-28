@@ -192,7 +192,10 @@ function flashSeq(){
 				click = 0;
 				choices = document.getElementById("No");
 				choices.innerHTML = click;
+				
+				if(counter > highScore){
 				highScore = counter;
+				}
 				on = false;
 			}//if2
 		}//for
