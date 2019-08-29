@@ -1,4 +1,4 @@
-//poprawic high score, powinien byc rowny
+
 var sequence = [];
 var sequencePlayer = [];
 var z; 
@@ -63,14 +63,14 @@ function resetGame(){
 	choices.innerHTML = click;
 	
 	score = document.getElementById("score");
-	score.innerHTML = "";
+	score.innerHTML = "HIGH SCORE: " + highScore;
 	counterNo = document.getElementById("counter");
 	counterNo.innerHTML = counter;
 	noMessage= document.getElementById("check");
 	noMessage.innerHTML = "";
 }//resetGame
 
-//drawing a random color and adding to the array
+//picking a random color and adding to the array
 function drawColor(){
 	var noMessage= document.getElementById("check");
 	noMessage.innerHTML = "";
@@ -126,6 +126,7 @@ function flashSeq(){
 		}//for
 }//flashSeq	
 
+//buttons and their functions
 			//****GREEN ****	
 			buttonGreen.addEventListener("click", function(){
 				if(on){
@@ -165,26 +166,21 @@ function flashSeq(){
 					check();
 				}//if
 			});
-		
-		function check(){
-		var correct = 0;
+
+//checking if the clicked number is correct	
+function check(){
+	var correct = 0;
 		for(var i = 0; i < sequencePlayer.length; i++){
 			
 			if (sequencePlayer[i] == sequence[i]){
 				var goodMessage = document.getElementById("check");
 				goodMessage.innerHTML = "...";
-				correct++;		
+				correct++;	
+				
 			}else {
-				var noMessage= document.getElementById("check");
-				noMessage.innerHTML = "WRONG!";
-				on = false;
-				sequence = [];
-				sequencePlayer = [];
-				score = document.getElementById("score");
-				score.innerHTML = "HIGH SCORE: " + highScore;
-				click = 0;
-				break;
+				resetGame();
 			}//else
+				
 			if(correct == sequence.length){
 				var noMessage= document.getElementById("check");
 				noMessage.innerHTML = "CORRECT!";
@@ -192,11 +188,11 @@ function flashSeq(){
 				click = 0;
 				choices = document.getElementById("No");
 				choices.innerHTML = click;
+				on = false;
 				
 				if(counter > highScore){
 				highScore = counter;
 				}
-				on = false;
 			}//if2
 		}//for
 }//check()
