@@ -7,26 +7,29 @@
     <title>Simon Game</title>
   </head>
   <body>
-    <div class="main-buttons">
-		<button type="button" id="reset" class="b greyOnes" onclick="resetGame()">RESET</button>
-		<button type="button" id = "play"name="button" class="b  greyOnes" onclick="start()">PLAY
-		<span id="No">-<span>
-		</button>
-		<button type="button" class="b" id="addNo" onclick="addNo()">+</button>
+	<div class="outer-circle">
+		
+		<div class="inner-circle">
+			<button class="button-play" id="btnG" onclick="flash()"></button>
+			<button class="button-play"" id="btnR" onclick="flash()"></button>
+			<br>
+			<button class="button-play"" id="btnB" onclick="flash()"></button>
+			<button class="button-play"" id="btnY" onclick="flash()"></button>
+			<p class="numbers" id="counter"></p>
+		</div>
 	</div>
 	
-	<button class="b" id="btnG" onclick="flash()"></button>
-	<button class="b" id="btnR" onclick="flash()"></button>
-	<br>
-	<button class="b" id="btnB" onclick="flash()"></button>
-	<button class="b" id="btnY" onclick="flash()"></button>
-	
-	<div id="score"></div>
-	<br>
-	<p class="numbers" id="counter"></p>
-	<br>
-	<div id="check"></div>
-   
+		<div id="score"></div>
+		<br>
+		<div id="check"></div>
+		
+		<div class="main-buttons">
+			<button type="button" id="reset" class="b greyOnes" onclick="resetGame()">RESET</button>
+			<button type="button" id = "play"name="button" class="b  greyOnes" onclick="start()">PLAY
+				<span id="No">-<span>
+			</button>
+			<button type="button" class="b" id="addNo" onclick="addNo()">+</button>
+		</div>
 	<script src="game.js" charset="utf-8"></script>
   </body>
 </html>

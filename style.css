@@ -1,6 +1,26 @@
+.outer-circle{
+	border: 2px solid black;
+	border-radius: 50%;
+	height: 440px;
+	width: 440px;
+	background-color: grey;
+	position: absolute;
+	bottom: 50px;
+	right: 400px;
+}
+.inner-circle{
+	position: relative;
+	top: 65px;
+	left: 65px;
+}
 .b{
 	height: 100px;
 	width: 200px;
+}
+.button-play{
+	height: 150px;
+	width: 150px;
+	border-radius: 100%;
 }
 .main-buttons{
 	width: 100%;
@@ -12,6 +32,18 @@
 	padding: 20px;
 	font-size: 15px;
 	font-weight: bolder;
+}
+#counter{
+	position: relative;
+	bottom: 205px;
+	left: 125px;
+	background: #330000;
+	font-size: 30px;
+	color: red;
+	height: 45px;
+	width: 45px;
+	line-height: 150%;
+	text-align: center;
 }
 
 #play{
@@ -89,14 +121,4 @@
 @keyframes yellow {
   from {background-color: goldenrod;}
   to {background-color: yellow;}
-}
-
-.numbers{
-	background: #330000;
-	font-size: 30px;
-	color: red;
-	height: 50px;
-	width: 50px;
-	line-height: 150%;
-	text-align: center;
 }
