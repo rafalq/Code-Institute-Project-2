@@ -1,5 +1,6 @@
 //if inncorect displays correct done
 //if press play button quickly - play all pressed sequences at once!!
+//zacina sie po przegranej
 var sequence = [];
 var sequencePlayer = [];
 var z; 
@@ -177,10 +178,14 @@ function check(){
 				correct++;	
 				
 			}else {
-				resetGame();
+				iconTimes();
+				setTimeout(function(){
+				resetGame();	
+			}, 1000);
 			}//else
 				
 			if((correct > 0) && (correct == sequence.length)){
+				iconCheck();
 				var noMessage= document.getElementById("check");
 				noMessage.innerHTML = "CORRECT!";
 				sequencePlayer = [];
@@ -195,3 +200,17 @@ function check(){
 			}//if2
 		}//for
 }//check()
+function iconCheck(){
+  var checkIcon = document.querySelector(".fa-check");
+  checkIcon.style.display="inline";
+  setTimeout(function(){
+		checkIcon.style.display="none";	
+			}, 1000);
+ }
+function iconTimes(){
+  var timesIcon = document.querySelector(".fa-times");
+  timesIcon.style.display="inline";
+  setTimeout(function(){
+		timesIcon.style.display="none";	
+			}, 1000);
+}
