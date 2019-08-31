@@ -1,4 +1,5 @@
-
+//if inncorect displays correct done
+//if press play button quickly - play all pressed sequences at once!!
 var sequence = [];
 var sequencePlayer = [];
 var z; 
@@ -15,7 +16,7 @@ var buttonRed = document.getElementById("btnR");
 var buttonBlue = document.getElementById("btnB");
 var buttonYellow = document.getElementById("btnY");
 
-//COUNTER button
+//PLUS button
 function addNo(){
 	on = false;
 	
@@ -49,8 +50,6 @@ function start(){
 	choices.innerHTML = click;
 	}
 }//startS
-	
-
 
 //RESET button
 function resetGame(){
@@ -63,7 +62,7 @@ function resetGame(){
 	choices.innerHTML = click;
 	
 	score = document.getElementById("score");
-	score.innerHTML = "HIGH SCORE: " + highScore;
+	score.innerHTML = highScore;
 	counterNo = document.getElementById("counter");
 	counterNo.innerHTML = counter;
 	noMessage= document.getElementById("check");
@@ -181,7 +180,7 @@ function check(){
 				resetGame();
 			}//else
 				
-			if(correct == sequence.length){
+			if((correct > 0) && (correct == sequence.length)){
 				var noMessage= document.getElementById("check");
 				noMessage.innerHTML = "CORRECT!";
 				sequencePlayer = [];

@@ -3,33 +3,58 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.10.2/css/all.css" integrity="sha384-rtJEYb85SiYWgfpCr0jn174XgJTn4rptSOQsMroFBPQSGLdOC5IbubP6lJ35qoM9" crossorigin="anonymous">
 	<link rel="stylesheet" href="style.css">
     <title>Simon Game</title>
   </head>
   <body>
-	<div class="outer-circle">
-		
-		<div class="inner-circle">
-			<button class="button-play" id="btnG" onclick="flash()"></button>
-			<button class="button-play"" id="btnR" onclick="flash()"></button>
-			<br>
-			<button class="button-play"" id="btnB" onclick="flash()"></button>
-			<button class="button-play"" id="btnY" onclick="flash()"></button>
-			<p class="numbers" id="counter"></p>
-		</div>
+  
+	<!-- RULES -->
+	<div id="rules">
 	</div>
+
 	
-		<div id="score"></div>
-		<br>
+	<div class="flex-container">
+	<!-- SCORE -->
+	<p class="text">SCORE</p>
+	
+		<div class="screen line-1">
+		<p class="number" id="score"><i class="fas fa-times"></i><i class="fas fa-check"></i></p>
+		</div>
+		
+		<div class="line-2">
+			<button class="button-play" id="btnG" onclick="flash()"></button>
+			<button class="button-play" id="btnR" onclick="flash()"></button>
+		</div>	
+		
+		<div class="line-3">	
+	<!-- PLUS -->
+		<button type="button" id="addNo" class="set-button" onclick="addNo()">+</button>	
+	<!-- COUNTER -->
+		<div class="screen">COUNTER
+		<p class="number" id="counter"></p>
+		</div>
+	<!-- PLAY -->
+		<button type="button" id = "play" class="set-button" onclick="start()">PLAY
+			<span id="No">-<span>
+		</button>	
+		</div>
+		
+		<div class="line-4">
+			<button class="button-play" id="btnB" onclick="flash()"></button>
+			<button class="button-play" id="btnY" onclick="flash()"></button>	
+		</div>
+	
+	<!-- RESET -->
+		<div class="line-5">
+			<button type="button" id="reset" class="set-button" onclick="resetGame()">RESET</button>
+		</div>
+	
+	<!-- CHECK -->
 		<div id="check"></div>
 		
-		<div class="main-buttons">
-			<button type="button" id="reset" class="b greyOnes" onclick="resetGame()">RESET</button>
-			<button type="button" id = "play"name="button" class="b  greyOnes" onclick="start()">PLAY
-				<span id="No">-<span>
-			</button>
-			<button type="button" class="b" id="addNo" onclick="addNo()">+</button>
-		</div>
+	</div>
+	
 	<script src="game.js" charset="utf-8"></script>
   </body>
 </html>
