@@ -1,4 +1,5 @@
-// jesli wcisniesz wystarczajaco szybko PLUS po przegranej, to gra dalej-chodzi o reset, ktory jest ustawiony na czas - jesli zmiescisz sie w 1s z wcisnieciem +, to mozesz grac dalej
+
+
 var sequence = [];
 var sequencePlayer = [];
 var z; 
@@ -8,6 +9,7 @@ var score = document.querySelector("#score");
 var highScore = 0;
 var click = 0;
 var choices = 0;
+var playOn = false;
 
 //BUTTONS
 var buttonGreen = document.getElementById("btnG");
@@ -18,7 +20,7 @@ var buttonYellow = document.getElementById("btnY");
 //PLUS button
 function addNo(){
 	on = false;
-	
+	playOn = true;
 	if(sequence == 0){
 		counter = 0;
 	}
@@ -32,11 +34,12 @@ function addNo(){
 	counterNo.innerHTML = counter;
 }
 
-
 //START button
 function start(){
+	if(playOn){
 	on = false;
-
+	playOn = false;
+	
 	if(click < 4 && counter > 0){
 		flashSeq();
 		click++;
@@ -52,6 +55,7 @@ function start(){
 	choices = document.getElementById("No");
 	choices.innerHTML = click;
 	}
+	}//if playOn
 }//startS
 
 //RESET button
@@ -116,7 +120,8 @@ function flashSeq(){
 			setTimeout( function timer(){
 				flash(sequence[i]);
 					if(i == sequence.length-1){
-						on = true
+						on = true;
+						playOn = true;
 					}//if
 			}, i*800);//setTimeout
 		}//for
@@ -181,7 +186,9 @@ function check(){
 				click = 0;
 				choices = document.getElementById("No");
 				choices.innerHTML = click;
+				
 				on = false;
+				playOn = false;
 				
 				if(counter > highScore){
 				highScore = counter;
