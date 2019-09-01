@@ -1,6 +1,4 @@
-//if inncorect displays correct done
-//if press play button quickly - play all pressed sequences at once!!
-//zacina sie po przegranej, nawe jak zresetujesz to nie dziala!!!
+// jesli wcisniesz wystarczajaco szybko PLUS po przegranej, to gra dalej-chodzi o reset, ktory jest ustawiony na czas - jesli zmiescisz sie w 1s z wcisnieciem +, to mozesz grac dalej
 var sequence = [];
 var sequencePlayer = [];
 var z; 
@@ -28,6 +26,10 @@ function addNo(){
 	counterNo = document.getElementById("counter");
 	counterNo.innerHTML = counter;
 	drawColor();
+	
+	score.innerHTML = highScore;
+	counterNo = document.getElementById("counter");
+	counterNo.innerHTML = counter;
 }
 
 
