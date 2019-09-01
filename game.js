@@ -34,7 +34,7 @@ function addNo(){
 //START button
 function start(){
 	on = false;
-	
+
 	if(click < 4 && counter > 0){
 		flashSeq();
 		click++;
