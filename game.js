@@ -12,6 +12,13 @@ var choices = 0;
 
 var playOn = false;
 
+//SOUNDS
+var soundColor = document.getElementById("color");
+var soundPlus = document.getElementById("plus");
+var soundPlay = document.getElementById("start");
+var soundGood = document.getElementById("good");
+var soundLost = document.getElementById("wrong");
+var soundReset = document.getElementById("restart");
 //BUTTONS
 var buttonGreen = document.getElementById("btnG");
 var buttonRed = document.getElementById("btnR");
@@ -22,6 +29,7 @@ var buttonYellow = document.getElementById("btnY");
 function addNo(){
 	on = false;
 	playOn = true;
+	sound(soundPlus);
 	if(sequence == 0){
 		counter = 0;
 	}
@@ -61,6 +69,7 @@ function start(){
 
 //RESET button
 function resetGame(){
+	sound(soundReset);
 	sequence = [];
 	sequencePlayer = [];
 	click = 0;
@@ -87,24 +96,28 @@ function drawColor(){
 function flash(z){	
 	switch(z){
 		case 1:
+			sound(soundColor);
 			buttonGreen.classList.add("green");
 				setTimeout(function(){
 				buttonGreen.classList.remove("green");
 				}, 300);
 		break;
 		case 2:
+			sound(soundColor);
 			buttonRed.classList.add("red");
 				setTimeout(function(){
 				buttonRed.classList.remove("red");
 				}, 300);
 		break;
 		case 3:
+			sound(soundColor);
 			buttonBlue.classList.add("blue");
 				setTimeout(function(){
 				buttonBlue.classList.remove("blue");
 				}, 300);
 		break;		
 		case 4:
+			sound(soundColor);
 			buttonYellow.classList.add("yellow");
 				setTimeout(function(){
 				buttonYellow.classList.remove("yellow");
@@ -133,6 +146,7 @@ function flashSeq(){
 			buttonGreen.addEventListener("click", function(){
 				if(on){
 					z = 1;
+					sound(soundColor);
 					flash(z);
 					sequencePlayer.push(z);
 					check();
@@ -143,6 +157,7 @@ function flashSeq(){
 			buttonRed.addEventListener("click", function(){
 				if(on){
 					z = 2;
+					sound(soundColor);
 					flash(z);
 					sequencePlayer.push(z);
 					check();
@@ -153,6 +168,7 @@ function flashSeq(){
 			buttonBlue.addEventListener("click", function(){
 				if(on){
 					z = 3;
+					sound(soundColor);
 					flash(z);
 					sequencePlayer.push(z);
 					check();
@@ -163,6 +179,7 @@ function flashSeq(){
 			buttonYellow.addEventListener("click", function(){
 				if(on){
 					z = 4;
+					sound(soundColor);
 					flash(z);
 					sequencePlayer.push(z);
 					check();
@@ -178,10 +195,12 @@ function check(){
 				correct++;	
 				
 			}else {
+				sound(soundLost);
 				iconTimes();
 			}//else
 				
 			if((correct > 0) && (correct == sequence.length)){
+				sound(soundGood);
 				iconCheck();
 				sequencePlayer = [];
 				click = 0;
@@ -216,4 +235,7 @@ function iconTimes(){
 		timesIcon.style.display="none";
 		score.style.display="inline";
 				}, 1000);
+}
+function sound(x){
+	x.play();
 }

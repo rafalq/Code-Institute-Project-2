@@ -29,7 +29,7 @@ body{
 	font-size: 35px;
 	color: red;
 	height: 50px;
-	width: 50px;
+	width: 70px;
 	line-height: 150%;
 	text-align: center;
 	border: 1px solid black;
@@ -154,7 +154,7 @@ body{
 	justify-content: center;
 	align-items: center;
 	position: relative;
-	top: 50px;
+	top: 70px;
 }
 .line-2{
 	display: flex;
@@ -163,7 +163,7 @@ body{
 	align-items: center;
 	margin-left: 40px;
 	margin-right: 40px;
-	padding-top: 30px
+	padding-top: 50px
 }
 .line-3{
 	display: flex;
@@ -175,7 +175,7 @@ body{
 	align-items: center;
 	margin-left: 40px;
 	margin-right: 40px;
-	padding-bottom: 30px
+	padding-bottom: 50px
 }	
 .line-5{
 	display: flex;
@@ -183,7 +183,7 @@ body{
 	justify-content: center;
 	align-items: center;
 	position: relative;
-	bottom: 40px;
+	bottom: 60px;
 }
 
 	
