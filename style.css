@@ -1,6 +1,9 @@
 body{
 	background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),url("images/black-stars.jpg") no-repeat bottom right fixed;
 }
+.set-button:hover{
+	box-shadow: 0px 1px 5px 3px #888888;
+}
 
 #rules{
 	float: left;
@@ -23,12 +26,13 @@ body{
 	font-family: 'Orbitron', sans-serif;
 	margin: auto;
 	background: #330000;
-	font-size: 30px;
+	font-size: 35px;
 	color: red;
-	height: 45px;
-	width: 45px;
+	height: 50px;
+	width: 50px;
 	line-height: 150%;
 	text-align: center;
+	border: 1px solid black;
 }
 .fa-check{
 	display: none;
@@ -53,7 +57,7 @@ body{
 	background-color: black;
 	color: white;
 	outline: white;
-	box-shadow: 0px 1px 10px 5px #888888;
+	
 }
 #No{
 	color: red;
@@ -71,10 +75,9 @@ body{
 .button-play{
 	height: 170px;
 	width: 170px;
-	border: none;
 	border-radius: 50%;
-	box-shadow: 0px 1px 10px 5px #888888;
 	outline: none;
+	border: 1px;
 }
 #btnG{
 	background-color: darkgreen;
@@ -91,8 +94,9 @@ body{
 
 .green{
 	animation-name: green;
-	animation-duration: .4s;
+	animation-duration: .3s;
 	animation-direction: alternate;
+	box-shadow: 0px 1px 5px 3px #888888;
 }
 @keyframes green {
   from {background-color: darkgreen;}
@@ -101,8 +105,9 @@ body{
 
 .red{
 	animation-name: red;
-	animation-duration: .4s;
+	animation-duration: .3s;
 	animation-direction: alternate;
+	box-shadow: 0px 1px 5px 3px #888888;
 }
 @keyframes red {
   from {background-color: darkred;}
@@ -111,18 +116,21 @@ body{
 
 .blue{
 	animation-name: blue;
-	animation-duration: .4s;
+	animation-duration: .3s;
 	animation-direction: alternate;
+	box-shadow: 0px 1px 5px 3px #888888;
 }
 @keyframes blue {
   from {background-color: darkblue;}
   to {background-color: lightskyblue;}
+  
 }
 
 .yellow{
 	animation-name: yellow;
-	animation-duration: .4s;
+	animation-duration: .3s;
 	animation-direction: alternate;
+	box-shadow: 0px 1px 5px 3px #888888;
 }
 @keyframes yellow {
   from {background-color: goldenrod;}

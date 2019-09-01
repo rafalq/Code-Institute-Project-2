@@ -9,6 +9,7 @@ var score = document.querySelector("#score");
 var highScore = 0;
 var click = 0;
 var choices = 0;
+
 var playOn = false;
 
 //BUTTONS
