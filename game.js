@@ -1,12 +1,12 @@
 //if inncorect displays correct done
 //if press play button quickly - play all pressed sequences at once!!
-//zacina sie po przegranej
+//zacina sie po przegranej, nawe jak zresetujesz to nie dziala!!!
 var sequence = [];
 var sequencePlayer = [];
 var z; 
 var counter = 0;
 var on;
-var score;
+var score = document.querySelector("#score");
 var highScore = 0;
 var click = 0;
 var choices = 0;
@@ -62,19 +62,13 @@ function resetGame(){
 	choices = document.getElementById("No");
 	choices.innerHTML = click;
 	
-	score = document.getElementById("score");
 	score.innerHTML = highScore;
 	counterNo = document.getElementById("counter");
 	counterNo.innerHTML = counter;
-	noMessage= document.getElementById("check");
-	noMessage.innerHTML = "";
 }//resetGame
 
 //picking a random color and adding to the array
 function drawColor(){
-	var noMessage= document.getElementById("check");
-	noMessage.innerHTML = "";
-	
 	randomNo = Math.floor(Math.random()*4+1);
 	sequence.push(randomNo);
 	
@@ -173,21 +167,14 @@ function check(){
 		for(var i = 0; i < sequencePlayer.length; i++){
 			
 			if (sequencePlayer[i] == sequence[i]){
-				var goodMessage = document.getElementById("check");
-				goodMessage.innerHTML = "...";
 				correct++;	
 				
 			}else {
 				iconTimes();
-				setTimeout(function(){
-				resetGame();	
-			}, 1000);
 			}//else
 				
 			if((correct > 0) && (correct == sequence.length)){
 				iconCheck();
-				var noMessage= document.getElementById("check");
-				noMessage.innerHTML = "CORRECT!";
 				sequencePlayer = [];
 				click = 0;
 				choices = document.getElementById("No");
@@ -203,14 +190,20 @@ function check(){
 function iconCheck(){
   var checkIcon = document.querySelector(".fa-check");
   checkIcon.style.display="inline";
+  score.style.display="none";	
   setTimeout(function(){
 		checkIcon.style.display="none";	
+		score.style.display="inline";	
 			}, 1000);
  }
 function iconTimes(){
-  var timesIcon = document.querySelector(".fa-times");
-  timesIcon.style.display="inline";
-  setTimeout(function(){
-		timesIcon.style.display="none";	
-			}, 1000);
+	on = false;
+	var timesIcon = document.querySelector(".fa-times");
+	score.style.display="none";	
+	timesIcon.style.display="inline";
+	setTimeout(function(){
+		resetGame();
+		timesIcon.style.display="none";
+		score.style.display="inline";
+				}, 1000);
 }

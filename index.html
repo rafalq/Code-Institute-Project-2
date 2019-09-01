@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link href='https://fonts.googleapis.com/css?family=Orbitron' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.10.2/css/all.css" integrity="sha384-rtJEYb85SiYWgfpCr0jn174XgJTn4rptSOQsMroFBPQSGLdOC5IbubP6lJ35qoM9" crossorigin="anonymous">
 	<link rel="stylesheet" href="style.css">
     <title>Simon Game</title>
@@ -19,7 +20,7 @@
 	<p class="text">SCORE</p>
 	
 		<div class="screen line-1">
-		<p class="number" id="score"><i class="fas fa-times"></i><i class="fas fa-check"></i></p>
+		<div class="number"><div id="score"></div><i class="fas fa-times"></i><i class="fas fa-check"></i></div>
 		</div>
 		
 		<div class="line-2">
@@ -29,13 +30,13 @@
 		
 		<div class="line-3">	
 	<!-- PLUS -->
-		<button type="button" id="addNo" class="set-button" onclick="addNo()">+</button>	
+		<button type="button" id="addNo" class="set-button" onclick="addNo()"><i class="fas fa-plus"></i></button>	
 	<!-- COUNTER -->
 		<div class="screen">COUNTER
-		<p class="number" id="counter"></p>
+		<p class="number" id="counter">-</p>
 		</div>
 	<!-- PLAY -->
-		<button type="button" id = "play" class="set-button" onclick="start()">PLAY
+		<button type="button" id = "play" class="set-button" onclick="start()"><i class="fas fa-play"></i>
 			<span id="No">-<span>
 		</button>	
 		</div>
@@ -50,9 +51,6 @@
 			<button type="button" id="reset" class="set-button" onclick="resetGame()">RESET</button>
 		</div>
 	
-	<!-- CHECK -->
-		<div id="check"></div>
-		
 	</div>
 	
 	<script src="game.js" charset="utf-8"></script>

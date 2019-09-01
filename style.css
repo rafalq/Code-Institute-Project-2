@@ -1,8 +1,11 @@
+body{
+	background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),url("images/black-stars.jpg") no-repeat bottom right fixed;
+}
+
 #rules{
 	float: left;
 	height: 500px;
 	width: 250px;
-	border: 2px solid black;
 	margin-left: 30px;
 }
 
@@ -17,6 +20,7 @@
 	text-align: center;
 }
 .number{
+	font-family: 'Orbitron', sans-serif;
 	margin: auto;
 	background: #330000;
 	font-size: 30px;
@@ -40,23 +44,40 @@
 	font-weight: bolder;
 	font-size: 12px;
 }
+#No{
+	color: red;
+}
+#play{
+	position: relative;
+	right: 10px;
+}
+#addNo{
+	position: relative;
+	left: 10px;
+}
 /*COLOR buttons*/
 .button-play{
-	height: 150px;
-	width: 150px;
+	height: 170px;
+	width: 170px;
 	border: none;
-}
+	border-radius: 50%;
+	box-shadow: 0px 1px 10px 5px #888888;
+	}
 #btnG{
 	background-color: darkgreen;
+	outline: none;
 }	
 #btnR{
 	background-color: darkred;
+	outline: none;
 }
 #btnB{
 	background-color: darkblue;
+	outline: none;
 }
 #btnY{
 	background-color: goldenrod;
+	outline: none;
 }
 
 .green{
@@ -99,10 +120,10 @@
   to {background-color: yellow;}
 }
 .flex-container{
-	
+	border-radius: 50%;
 	height: 500px;
 	width: 500px;
-	background-color: grey;
+	/*background-color: #aaa9ad;*/
 	display: flex;
 	flex-direction: column;
 	justify-content: space-around;
@@ -114,14 +135,17 @@
 	flex-direction:;
 	justify-content: center;
 	align-items: center;
+	position: relative;
+	top: 50px;
 }
 .line-2{
 	display: flex;
 	flex-direction: row;
 	justify-content: space-around;
 	align-items: center;
-	margin-left: 25px;
-	margin-right: 25px;
+	margin-left: 40px;
+	margin-right: 40px;
+	padding-top: 30px
 }
 .line-3{
 	display: flex;
@@ -131,13 +155,17 @@
 	flex-direction: row;
 	justify-content: space-around;
 	align-items: center;
-	margin-left: 25px;
-	margin-right: 25px;
-}
+	margin-left: 40px;
+	margin-right: 40px;
+	padding-bottom: 30px
+}	
 .line-5{
 	display: flex;
 	flex-direction: row;
 	justify-content: center;
 	align-items: center;
+	position: relative;
+	bottom: 50px;
 }
+
 	
