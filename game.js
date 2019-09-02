@@ -142,6 +142,7 @@ function flashSeq(){
 					if(i == sequence.length-1){
 						on = true;
 						playOn = true;
+						useLife = true;
 					}//if
 			}, i*800);//setTimeout
 		}//for
@@ -199,9 +200,7 @@ function check(){
 		for(var i = 0; i < sequencePlayer.length; i++){
 			
 			if (sequencePlayer[i] == sequence[i]){
-				correct++;	
-				useLife = true;
-				
+				correct++;				
 			}else {
 				sound(soundLost);
 				iconTimes();
