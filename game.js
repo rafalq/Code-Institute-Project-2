@@ -1,5 +1,4 @@
-
-
+//zrobic tylko 3 zycia
 var sequence = [];
 var sequencePlayer = [];
 var z; 
@@ -27,6 +26,9 @@ var buttonYellow = document.getElementById("btnY");
 
 //PLUS button
 function addNo(){
+	if(counter==99){
+		resetGame();
+	}
 	on = false;
 	playOn = true;
 	sound(soundPlus);
@@ -141,6 +143,7 @@ function flashSeq(){
 		}//for
 }//flashSeq	
 
+//1 object
 //buttons and their functions
 			//****GREEN ****	
 			buttonGreen.addEventListener("click", function(){
@@ -216,6 +219,8 @@ function check(){
 			}//if2
 		}//for
 }//check()
+
+//1 function
 function iconCheck(){
   var checkIcon = document.querySelector(".fa-check");
   checkIcon.style.display="inline";
