@@ -8,6 +8,7 @@ var score = document.querySelector("#score");
 var highScore = 0;
 var click = 0;
 var choices = 0;
+var useLife = false;
 
 var playOn = false;
 
@@ -47,13 +48,16 @@ function addNo(){
 
 //START button
 function start(){
+	
 	if(playOn){
 	on = false;
 	playOn = false;
 	
 	if(click < 4 && counter > 0){
 		flashSeq();
-		click++;
+			if(useLife){
+			click++;
+			}
 	}
 	if(sequence == 0){
 		counter = 0;
@@ -196,6 +200,7 @@ function check(){
 			
 			if (sequencePlayer[i] == sequence[i]){
 				correct++;	
+				useLife = true;
 				
 			}else {
 				sound(soundLost);
@@ -206,7 +211,7 @@ function check(){
 				sound(soundGood);
 				iconCheck();
 				sequencePlayer = [];
-				click = 0;
+				useLife = false;
 				choices = document.getElementById("No");
 				choices.innerHTML = click;
 				
