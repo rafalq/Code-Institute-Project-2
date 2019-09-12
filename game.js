@@ -1,16 +1,21 @@
-//zrobic tylko 3 zycia
 var sequence = [];
 var sequencePlayer = [];
 var z; 
-var counter = 0;
-var on;
-var score = document.querySelector("#score");
-var highScore = 0;
-var click = 0;
-var choices = 0;
-var useLife = false;
 
-var playOn = false;
+var counter = 0;    //the sequence no. 
+
+var click = 3;	   //number of lives
+var choices;		
+
+var useLife = false;	  //unblock possibillity to repeat the sequence one more time
+var playOn = false;		 //unblock play button 
+var on;                 //unblock color buttons only for player turn
+var noLifemode = true; //enabling player to play with no life 
+var plusOn = true;	  //blocking plus button during flashSeq(), prevent from crashing the game 
+					//if player press the button by mistake 	
+
+var highScore = 0;							   //the highest score	
+var score = document.getElementById("score"); //current score the same as number of colors in the sequence
 
 //SOUNDS
 var soundColor = document.getElementById("color");
@@ -19,7 +24,8 @@ var soundPlay = document.getElementById("start");
 var soundGood = document.getElementById("good");
 var soundLost = document.getElementById("wrong");
 var soundReset = document.getElementById("restart");
-//BUTTONS
+
+//COLOR BUTTONS
 var buttonGreen = document.getElementById("btnG");
 var buttonRed = document.getElementById("btnR");
 var buttonBlue = document.getElementById("btnB");
@@ -27,60 +33,73 @@ var buttonYellow = document.getElementById("btnY");
 
 //PLUS button
 function addNo(){
-	if(counter==99){
-		resetGame();
-	}
-	on = false;
-	playOn = true;
-	sound(soundPlus);
-	if(sequence == 0){
-		counter = 0;
-	}
-	counter++;
-	counterNo = document.getElementById("counter");
-	counterNo.innerHTML = counter;
-	drawColor();
-	
-	score.innerHTML = highScore;
-	counterNo = document.getElementById("counter");
-	counterNo.innerHTML = counter;
+	//needs to be unblock first
+	if(plusOn){
+
+		if(counter == 99){
+			resetGame();
+		}
+		//block color buttons and unblock play button that start the sequence
+		on = false;
+		playOn = true;
+		sound(soundPlus);
+		//? don't rememeber 
+		if(sequence == 0){
+			counter = 0;
+		}
+		
+		counter++;
+		counterNo = document.getElementById("counter");
+		counterNo.innerHTML = counter;
+		drawColor();
+		
+		//update the highest score
+		score.innerHTML = highScore;
+		counterNo = document.getElementById("counter");
+		counterNo.innerHTML = counter;
+	}//plusOn
 }
 
 //START button
-function start(){
-	
+function start(){	
 	if(playOn){
-	on = false;
-	playOn = false;
-	
-	if(click < 4 && counter > 0){
-		flashSeq();
-			if(useLife){
-			click++;
+		//block play and plus buttons  
+		plusOn = false;
+		playOn = false;
+			//button works if you are still in play having enough life or haven't lost
+			if((click > 0 && counter > 0) || (click == 0 && noLifemode)){
+				//block color buttons
+				on = false;
+				noLifemode = false;
+				flashSeq();
+					if(useLife){
+						click--;
+					}
 			}
-	}
-	if(sequence == 0){
-		counter = 0;
-	}
-	if(click == 4){
-		resetGame();
-	}
-	
-	if(counter > 0){
-	choices = document.getElementById("No");
-	choices.innerHTML = click;
-	}
+			if(sequence == 0){
+				counter = 0;
+			}
+			if(counter > 0){
+				choices = document.getElementById("No");
+				choices.innerHTML = click;
+			}
 	}//if playOn
 }//startS
 
 //RESET button
 function resetGame(){
 	sound(soundReset);
+	
 	sequence = [];
 	sequencePlayer = [];
-	click = 0;
+	
+	click = 3;
 	counter = 0;
-	on = false; 
+	
+	on = false;
+	useLife = false;
+	plusOn = true;
+	
 	choices = document.getElementById("No");
 	choices.innerHTML = click;
 	
@@ -142,66 +161,57 @@ function flashSeq(){
 					if(i == sequence.length-1){
 						on = true;
 						playOn = true;
-						useLife = true;
+						if(click > 0){
+							useLife = true;
+						}//inner if	
 					}//if
-			}, i*800);//setTimeout
+			}, i*700);//setTimeout
 		}//for
 }//flashSeq	
 
-//1 object
 //buttons and their functions
-			//****GREEN ****	
-			buttonGreen.addEventListener("click", function(){
-				if(on){
-					z = 1;
-					sound(soundColor);
-					flash(z);
-					sequencePlayer.push(z);
-					check();
-				}//if
-			});
+function whichButton(z){
+	sound(soundColor);
+	flash(z);
+	sequencePlayer.push(z);
+	check();
+}		
+//****GREEN ****	
+	buttonGreen.addEventListener("click", function(){
+		if(on){
+			whichButton(1);	
+		}//if
+	});
 			
-			//****RED****
-			buttonRed.addEventListener("click", function(){
-				if(on){
-					z = 2;
-					sound(soundColor);
-					flash(z);
-					sequencePlayer.push(z);
-					check();
-				}//if
-			});
+//****RED****
+	buttonRed.addEventListener("click", function(){
+		if(on){
+			whichButton(2);
+		}//if
+	});
 			
-			//****BLUE****
-			buttonBlue.addEventListener("click", function(){
-				if(on){
-					z = 3;
-					sound(soundColor);
-					flash(z);
-					sequencePlayer.push(z);
-					check();
-				}//if
-			});
+//****BLUE****
+	buttonBlue.addEventListener("click", function(){
+		if(on){
+			whichButton(3);		
+		}//if
+	});
 			
-			//****YELLOW****
-			buttonYellow.addEventListener("click", function(){
-				if(on){
-					z = 4;
-					sound(soundColor);
-					flash(z);
-					sequencePlayer.push(z);
-					check();
-				}//if
-			});
+//****YELLOW****
+	buttonYellow.addEventListener("click", function(){
+		if(on){
+			whichButton(4);
+		}//if
+	});
 
 //checking if the clicked number is correct	
 function check(){
 	var correct = 0;
 		for(var i = 0; i < sequencePlayer.length; i++){
 			
-			if (sequencePlayer[i] == sequence[i]){
+			if(sequencePlayer[i] == sequence[i]){
 				correct++;				
-			}else {
+			}else{
 				sound(soundLost);
 				iconTimes();
 			}//else
@@ -216,6 +226,8 @@ function check(){
 				
 				on = false;
 				playOn = false;
+				plusOn = true;
+				noLifemode = true;
 				
 				if(counter > highScore){
 				highScore = counter;

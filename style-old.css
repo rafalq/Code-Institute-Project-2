@@ -52,63 +52,7 @@ body{
 	position: relative;
 	bottom: 60px;
 }
-
-@media only screen and (max-width: 700px){
-	.set-button{
-		height: 80px !important;
-		width: 80px !important;
-		font-size: 35px !important;
-		background-color: black;
-	}
-	.flex-container{
-		padding-top: 180px;
-	}
-
-	#reset{
-		position: relative;
-		bottom: 650px;
-		right: -180px;
-	}
-	#play{
-		position: relative;
-		top: 340px;
-		margin-right: 120px;
-	}
-	#No{
-		font-size: 25px !important;
-	}
-	#addNo{
-		position: relative;
-		top: 340px;
-		margin-left: 120px;
-	}
-	.button-play{
-		height: 220px !important;
-		width: 220px !important;
-	}
-	#btnG{
-		position: relative;
-		left: -25px;
-	}	
-	#btnR{
-		position: relative;
-		right: -25px;
-	}
-	#btnB{
-		position: relative;
-		right: -25px;
-	}
-	#btnY{
-		position: relative;
-		left: -25px;position: relative;
-		right: -25px;
-	}
-	.number{
-	font-size: 40px !important;
-	height: 90px !important;
-	width: 110px !important;
-	line-height: 230% !important;
-	}
+	
 }
 button:focus{
 	outline: none;
@@ -116,7 +60,7 @@ button:focus{
 .set-button:hover{
 	box-shadow: 0px 1px 5px 3px #888888;
 }
-
+@media screen{}
 /*
 #rules{
 	float: left;
