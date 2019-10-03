@@ -30,6 +30,12 @@ var buttonGreen = document.getElementById("btnG");
 var buttonRed = document.getElementById("btnR");
 var buttonBlue = document.getElementById("btnB");
 var buttonYellow = document.getElementById("btnY");
+var buttonPlay = document.getElementsByClassName("button-play");
+
+//SET BUTTONS
+var buttonPlus = document.getElementById("addNo");
+var buttonStart = document.getElementById("play");
+var buttonReset = document.getElementById("reset");
 
 //PLUS button
 function addNo(){
@@ -43,7 +49,7 @@ function addNo(){
 		on = false;
 		playOn = true;
 		sound(soundPlus);
-		//? don't rememeber 
+		
 		if(sequence == 0){
 			counter = 0;
 		}
@@ -59,6 +65,10 @@ function addNo(){
 		counterNo.innerHTML = counter;
 	}//plusOn
 }
+buttonPlus.addEventListener("click", function(){
+	addNo();
+});
+
 
 //START button
 function start(){	
@@ -84,7 +94,10 @@ function start(){
 				choices.innerHTML = click;
 			}
 	}//if playOn
-}//startS
+}//start
+buttonStart.addEventListener("click", function(){
+	start();
+});
 
 //RESET button
 function resetGame(){
@@ -99,6 +112,7 @@ function resetGame(){
 	on = false;
 	useLife = false;
 	plusOn = true;
+	playOn = false;
 	
 	choices = document.getElementById("No");
 	choices.innerHTML = click;
@@ -107,6 +121,9 @@ function resetGame(){
 	counterNo = document.getElementById("counter");
 	counterNo.innerHTML = counter;
 }//resetGame
+buttonReset.addEventListener("click", function(){
+	resetGame();
+});
 
 //picking a random color and adding to the array
 function drawColor(){
@@ -151,6 +168,13 @@ function flash(z){
 	}//switch
 }//flashButton
 
+for (var i in buttonPlay) {
+  buttonPlay[i].onclick = function() {
+    flash();
+  };
+}
+
+
 //flashing colors by computer
 function flashSeq(){	
 	sequencePlayer = [];
@@ -175,7 +199,8 @@ function whichButton(z){
 	flash(z);
 	sequencePlayer.push(z);
 	check();
-}		
+}
+		
 //****GREEN ****	
 	buttonGreen.addEventListener("click", function(){
 		if(on){
@@ -214,6 +239,7 @@ function check(){
 			}else{
 				sound(soundLost);
 				iconTimes();
+				plusOn = true;
 			}//else
 				
 			if((correct > 0) && (correct == sequence.length)){
