@@ -91,11 +91,11 @@ I used a sky image for the background and dark colors for the set buttons to cre
 
 The highest score is kept locally as a variable `var highScore` and displays in the top little window. After each player's turn, it is updated if the round is won or the previous one is hold until setting a new record. I used a conditional statement which compares the current sequence length number `var counter` with the value of the variable.
 
-			```javascript
-			if(counter > highScore){
-				highScore = counter;
-			}
-			```
+```javascript
+if(counter > highScore){
+highScore = counter;
+}
+```
 
 A player starts the game by pressing the plus sign button and setting a number that is the sequence length. The code for this uses a random number(from 1 to 4) method that is added to the array `sequence[]` everytime when it is pressed .
  
@@ -109,21 +109,22 @@ The player's turn starts and they need to repeat the sequence to continue the ga
  
 When the player presses one of the color buttons, they add one of the numbers, assigned to them, to `sequencePlayer[]` that is checked immediately
 
-	```javascript
-	function whichButton(z){...check();
-	}
-	```
+```javascript
+function whichButton(z){
+...check();
+}
+```
 	
 whether it is the same as the sequence number in the same position(the index number) in the array.
 
-	```javascript
-	function check(){
-		var correct = 0;
-		for(var i = 0; i < sequencePlayer.length; i++){
-			if(sequencePlayer[i] == sequence[i]){
-				correct++;				
-			}...
-	```
+```javascript
+function check(){
+	var correct = 0;
+	for(var i = 0; i < sequencePlayer.length; i++){
+		if(sequencePlayer[i] == sequence[i]){
+			correct++;				
+		}...
+```
 	
 If all player's numbers are the same as these in the sequence `if((correct > 0) && (correct == sequence.length))`, the player's array is emptied and the high score is updated if it is changed, the counter keeps the last sequence number, the color buttons are blocked and the plus button is unblocked. Players can continue the game until they lose.
 
@@ -164,13 +165,15 @@ Everything is like from the beginning except the saved score.
 
 The website can be open with the browsers:  Firefox (Version 70.0.1), Opera (Version 63.0.3), Internet Explorer (Version 11.0.9), Google Chrome (Version 77.0.3 ); responsive on mobiles, tablets, kindels.
 There were some issue in the Internet Explorer browser, the game neither work nor play the sounds. I could only use the Plus button. I needed to create a different "for" loop with the IIFE for the browser only:
-			```javascript
-			(function(index) {
-				setTimeout( function(){
-					flash(sequence[index]);
-					if(index == sequence.length-1){
-							on = true;...
-			``` 
+
+```javascript
+(function(index) {
+	setTimeout( function(){
+		flash(sequence[index]);
+			if(index == sequence.length-1){
+				on = true;...
+```
+
 For the sounds, I needed to use mp3 files. 
 
 ## Deployment
@@ -186,13 +189,15 @@ You can run the website locally by cloning the repository or using this command 
 ### Content
 
 I resolved the IE browser issue using this code snippet:
-		```javascript
-		for (var i = 1; i <= 10; i++){
-			(function(index) {
-				setTimeout(function() { alert(index); }, i*1000);
-			})(i);
-		}
-		```
+
+```javascript
+for (var i = 1; i <= 10; i++){
+	(function(index) {
+		setTimeout(function() { alert(index); }, i*1000);
+	})(i);
+}
+```
+
 from [this](https://wsvincent.com/javascript-closure-settimeout-for-loop/) website.
 
 The modal code was copied from [W3Schools](https://www.w3schools.com/howto/howto_css_modals.asp)
