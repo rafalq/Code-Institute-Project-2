@@ -79,7 +79,7 @@ I used a sky image for the background and dark colors for the set buttons to cre
 
 ### Skeleton
 
-[Game wireframe](https://rafalq.github.io/Code-Institute-Project-2/blob/master/wireframes/game.jpg)
+[Game wireframe](https://github.com/rafalq/Code-Institute-Project-2/blob/master/wireframes/game.jpg)
 
 ## Technologies
 
