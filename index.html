@@ -1,35 +1,75 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
+<html lang="en">
+
+<head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
 	
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 	<link href='https://fonts.googleapis.com/css?family=Orbitron' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.10.2/css/all.css" integrity="sha384-rtJEYb85SiYWgfpCr0jn174XgJTn4rptSOQsMroFBPQSGLdOC5IbubP6lJ35qoM9" crossorigin="anonymous">
-	<link rel="stylesheet" href="style.css">
+	<link rel="stylesheet" href="assets/css/style.css">
 	
     <title>Memory Game</title>
-  </head>
-  <body>
-  <!--SOUNDS-->
-	<audio id="color">
-		<source src="sounds/flash.wav"></source>
-	</audio>
-	<audio id="plus">
-		<source src="sounds/plus.wav"></source>
-	</audio>
-	<audio id="start">
-		<source src="sounds/start.wav"></source>
-	</audio>
-	<audio id="good">
-		<source src="sounds/success.wav"></source>
-	</audio>
-	<audio id="wrong">
-		<source src="sounds/wrong.wav"></source>
-	</audio>
-	<audio id="restart">
-		<source src="sounds/restart.wav"></source>
-	</audio>
+</head>
+<body>
+
+	<!--SOUNDS-->
+	<audio id="mp3-color" src="mp3-sounds/mp3-flash.mp3"> </audio>
+	<audio id="mp3-plus" src="mp3-sounds/mp3-plus.mp3"> </audio>
+	<audio id="mp3-start" src="mp3-sounds/mp3-start.mp3"> </audio>
+	<audio id="mp3-good" src="mp3-sounds/mp3-success.mp3"> </audio>
+	<audio id="mp3-wrong" src="mp3-sounds/mp3-wrong.mp3"> </audio>
+	<audio id="mp3-restart" src="mp3-sounds/mp3-restart.mp3"> </audio>
+	
+	<audio id="color" src="sounds/color.wav"> </audio>
+	<audio id="plus" src="sounds/plus.wav"> </audio>
+	<audio id="start" src="sounds/start.wav"> </audio>
+	<audio id="good" src="sounds/success.wav"> </audio>
+	<audio id="wrong" src="sounds/fail.wav"> </audio>
+	<audio id="restart" src="sounds/restart.wav"> </audio>
+	
+	<!-- RULES -->
+
+		<!-- Trigger/Open The Modal -->
+	<button id="modal-btn"><i class="fas fa-dice"></i> Rules</button>
+		<!-- The Modal -->
+	<div id="myModal" class="modal">
+	
+		<div class="modal-content">
+		
+			<span class="close">&times;</span>
+			
+			<h3 style="text-align: center;">Game Instruction</h3><br>
+			
+			<p>To START the game press <i class="fas fa-plus"></i> button and set how long a sequence you want to guess.</p>
+			
+			<p>Press <i class="fas fa-play"></i> button and wait for the sequence to end.</p>
+			
+			<p>Now your turn!</p>
+			
+			<p>Repeat the sequence by pressing the <i class="fas fa-circle" style="color: lightgreen;"></i> <i class="fas fa-circle" style="color: tomato;"></i> <i class="fas fa-circle" style="color: lightskyblue;"></i> <i class="fas fa-circle" style="color: yellow;"></i> color buttons.</p>
+			
+			<p>If you are correct, the game displays the <b style="color: red; font-size: 20px;">V</b> sign in the highest score counter at the top and responses with a "success" sound, you can continue by adding more colors to a sequence using <i class="fas fa-plus"></i> button.</p>
+
+			<p><b>Remember! You can not move back! You can only add colors.</b></p>
+			
+			<p>If you fail to repeat it in the exact order, the game displays the <b style="color: red; font-size: 20px;">X</b> sign, stops and zeroes the main counter immediately.<br>
+			You need to start a new game.</p>
+			
+			<p>You can add as many colors as you wish (the limit is <b style="color: red;">99</b>).</p>
+			<p>During your turn, you can use one of your life points by pressing <i class="fas fa-play"></i> button (the start amount is three <i class="fas fa-play"><b style="color: red; font-size: 15px;"> 3</b></i>) to see the last sequence again.</p>
+			
+			<p>Press <i class="fas fa-sync-alt"></i> button anytime you want to stop the game.</p>
+			
+			<p><b>Remember! When you press <i class="fas fa-sync-alt"></i>, the main counter zeroes and you need to start from the beginning.</b></p>
+			
+			<p>The number at the top is your <b>highest score</b>.</p>
+			
+			<p>The number at the center among the color buttons is your <b>current sequence length</b>.</p>
+		</div>
+		
+	</div>
 
 	<!-- GAME -->
 	<div class="flex-container">
@@ -51,8 +91,8 @@
 		<p class="number" id="counter">-</p>
 		</div>
 	<!-- PLAY -->
-		<button type="button" id = "play" class="set-button"><i class="fas fa-play"></i>
-			<span id="No">-<span>
+		<button type="button" id="play" class="set-button"><i class="fas fa-play"></i>
+			<span id="No">-</span>
 		</button>	
 		</div>
 		
@@ -67,7 +107,8 @@
 		</div>
 	
 	</div>
-	
-	<script src="game.js" charset="utf-8"></script>
-  </body>
+    
+<script src="assets/js/game.js" charset="utf-8"></script>
+
+ </body>
 </html>

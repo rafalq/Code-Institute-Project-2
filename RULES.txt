@@ -1,6 +1,0 @@
-1. Press PLUS sign button to choose how many colors in a sequence you want to guess,
-2. Press PLAY button to start the game,
-3. You can repeat a sequence 3 times(the small number next to the play sign) for a game only during your turn by pressing the play button,
-4. The number at the top is your highest score,
-5. The number at the center is your current sequence,
-6. Press RESET button anytime you want to stop the game and zero the counters.

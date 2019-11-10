@@ -2,28 +2,38 @@ var sequence = [];
 var sequencePlayer = [];
 var z; 
 
-var counter = 0;    //the sequence no. 
+var counter = 0;    //sequence length. 
 
-var click = 3;	   //number of lives
+var click = 3;	   //number of life points
 var choices;		
 
-var useLife = false;	  //unblock possibillity to repeat the sequence one more time
+var useLife = false;	  //unblock possibillity to repeat the sequence(life points)
 var playOn = false;		 //unblock play button 
 var on;                 //unblock color buttons only for player turn
-var noLifemode = true; //enabling player to play with no life 
-var plusOn = true;	  //blocking plus button during flashSeq(), prevent from crashing the game 
-					//if player press the button by mistake 	
+var plusOn = true;	   //blocking plus button during flashSeq(), prevent from crashing the game if player press the button by mistake 
 
-var highScore = 0;							   //the highest score	
+
+var highScore = 0;							   //highest score	
 var score = document.getElementById("score"); //current score the same as number of colors in the sequence
 
 //SOUNDS
-var soundColor = document.getElementById("color");
-var soundPlus = document.getElementById("plus");
-var soundPlay = document.getElementById("start");
-var soundGood = document.getElementById("good");
-var soundLost = document.getElementById("wrong");
-var soundReset = document.getElementById("restart");
+//IE11
+if((navigator.userAgent.indexOf("MSIE") != -1 ) || (!!document.documentMode == true )){
+	var soundColor = document.getElementById("mp3-color");
+	var soundPlus = document.getElementById("mp3-plus");
+	var soundPlay = document.getElementById("mp3-start");
+	var soundGood = document.getElementById("mp3-good");
+	var soundLost = document.getElementById("mp3-wrong");
+	var soundReset = document.getElementById("mp3-restart");
+//Chrome, Firefox, Opera	
+}else{
+	var soundColor = document.getElementById("color");
+	var soundPlus = document.getElementById("plus");
+	var soundPlay = document.getElementById("start");
+	var soundGood = document.getElementById("good");
+	var soundLost = document.getElementById("wrong");
+	var soundReset = document.getElementById("restart");
+}
 
 //COLOR BUTTONS
 var buttonGreen = document.getElementById("btnG");
@@ -37,15 +47,39 @@ var buttonPlus = document.getElementById("addNo");
 var buttonStart = document.getElementById("play");
 var buttonReset = document.getElementById("reset");
 
-//PLUS button
+//MODAL
+var modal = document.getElementById("myModal");
+var btn = document.getElementById("modal-btn");
+var span = document.getElementsByClassName("close")[0];
+// When the user clicks the button, open the modal 
+btn.onclick = function() {
+  modal.style.display = "block";
+}
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+  modal.style.display = "none";
+}
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+
+		//SOUND
+function sound(x){
+	x.play();
+}
+
+		//PLUS button
 function addNo(){
-	//needs to be unblock first
+	//needs to be unblocked first
 	if(plusOn){
 
 		if(counter == 99){
 			resetGame();
 		}
-		//block color buttons and unblock play button that start the sequence
+		//block color buttons and unblock the play button that fires the sequence
 		on = false;
 		playOn = true;
 		sound(soundPlus);
@@ -70,15 +104,18 @@ buttonPlus.addEventListener("click", function(){
 });
 
 
-//START button
+			//PLAY button
+buttonStart.addEventListener("click", function(){
+	start();});
+	
 function start(){	
 	if(playOn){
-		//block play and plus buttons  
+		//block the play and the plus buttons, preventing from pressing them accidentally 
 		plusOn = false;
 		playOn = false;
-			//button works if you are still in play having enough life or haven't lost
+			//button works if you are still in play, having at least 1 life point
 			if((click > 0 && counter > 0) || (click == 0 && noLifemode)){
-				//block color buttons
+				//block the color buttons during displaying the sequence
 				on = false;
 				noLifemode = false;
 				flashSeq();
@@ -95,11 +132,8 @@ function start(){
 			}
 	}//if playOn
 }//start
-buttonStart.addEventListener("click", function(){
-	start();
-});
 
-//RESET button
+			//RESET button			
 function resetGame(){
 	sound(soundReset);
 	
@@ -125,7 +159,7 @@ buttonReset.addEventListener("click", function(){
 	resetGame();
 });
 
-//picking a random color and adding to the array
+//random color is being added to the array
 function drawColor(){
 	randomNo = Math.floor(Math.random()*4+1);
 	sequence.push(randomNo);
@@ -135,7 +169,8 @@ function drawColor(){
 }
 
 //picking the button to flash		
-function flash(z){	
+function flash(z){
+
 	switch(z){
 		case 1:
 			sound(soundColor);
@@ -176,10 +211,36 @@ for (var i in buttonPlay) {
 
 
 //flashing colors by computer
-function flashSeq(){	
+function flashSeq(){
+	
+//IE11
+if((navigator.userAgent.indexOf("MSIE") != -1 ) || (!!document.documentMode == true )){
+	
 	sequencePlayer = [];
+
 		//flashes in queue for every array item
-		for (let i=0; i < sequence.length; i++) {
+		for(var i=0; i < sequence.length; i++){
+		
+			(function(index) {
+				setTimeout( function(){
+					flash(sequence[index]);
+					if(index == sequence.length-1){
+							on = true;
+							playOn = true;
+							if(click > 0){
+								useLife = true;
+							}//inner if	
+						}//if
+				}, i*700);//setTimeout
+				})(i);	
+		}//for	
+//Chrome, Firefox, Opera		
+}else{
+	
+	sequencePlayer = [];
+	
+		//flashes subsequently for each array item
+		for (let i=0; i < sequence.length; i++){
 			setTimeout( function timer(){
 				flash(sequence[i]);
 					if(i == sequence.length-1){
@@ -191,6 +252,7 @@ function flashSeq(){
 					}//if
 			}, i*700);//setTimeout
 		}//for
+}//else
 }//flashSeq	
 
 //buttons and their functions
@@ -229,11 +291,10 @@ function whichButton(z){
 		}//if
 	});
 
-//checking if the clicked number is correct	
+//checking if the clicked button (number) is correct	
 function check(){
 	var correct = 0;
 		for(var i = 0; i < sequencePlayer.length; i++){
-			
 			if(sequencePlayer[i] == sequence[i]){
 				correct++;				
 			}else{
@@ -262,7 +323,7 @@ function check(){
 		}//for
 }//check()
 
-//1 function
+//V and X icons
 function iconCheck(){
   var checkIcon = document.querySelector(".fa-check");
   checkIcon.style.display="inline";
@@ -282,7 +343,4 @@ function iconTimes(){
 		timesIcon.style.display="none";
 		score.style.display="inline";
 				}, 1000);
-}
-function sound(x){
-	x.play();
 }
