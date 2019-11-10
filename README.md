@@ -89,31 +89,45 @@ I used a sky image for the background and dark colors for the set buttons to cre
 
 ## Features
 
-The highest score is kept locally as a variable(`var highScore`) and displays in the top little window. After each player's turn, it is updated if the round is won or the previous one is hold until setting a new record. I used a conditional statement which compares the current sequence length number (`var counter`)with the value of the variable.	
-			```if(counter > highScore){
+The highest score is kept locally as a variable `var highScore` and displays in the top little window. After each player's turn, it is updated if the round is won or the previous one is hold until setting a new record. I used a conditional statement which compares the current sequence length number `var counter` with the value of the variable.
+
+			```javascript
+			if(counter > highScore){
 				highScore = counter;
-			}```
+			}
+			```
 
-A player starts the game by pressing the plus sign button and setting a number that is the sequence length. The code for this uses a random number(from 1 to 4) method that is added to the array(`sequence[]`) everytime when it is pressed .
+A player starts the game by pressing the plus sign button and setting a number that is the sequence length. The code for this uses a random number(from 1 to 4) method that is added to the array `sequence[]` everytime when it is pressed .
  
-After pushing the Play button, the plus one is blocked to prevent from modifying the sequence during displaying it and during the player's turn(`plusOn = false;`).
+After pushing the Play button, the plus one is blocked to prevent from modifying the sequence during displaying it and during the player's turn `plusOn = false;`
 
-The color buttons change their colors subsequently by replacing their `background-color`classes in javascript. I used a `for` loop and `setTimeOut` function to create a flashing effect.
+The color buttons change their colors subsequently by replacing their `background-color` classes in javascript. I used a `for` loop and `setTimeOut` function to create a flashing effect.
 
-The sequence happens in time (`setTimeOut` function) after which the color buttons are unlocked (`var on = true;`).
+The sequence happens in time `setTimeOut` function after which the color buttons are unlocked `var on = true`
 
 The player's turn starts and they need to repeat the sequence to continue the game. My idea was to create a method (`function check()`) that compares two arrays - the player's and the sequence.
  
-When the player presses one of the color buttons, they add one of the numbers, assigned to them, to `sequencePlayer[]` that is checked immediately (`function whichButton(z){...check();}`),whether it is the same as the sequence number in the same position(the index number) in the array.
-	```function check(){
+When the player presses one of the color buttons, they add one of the numbers, assigned to them, to `sequencePlayer[]` that is checked immediately
+
+	```javascript
+	function whichButton(z){...check();
+	}
+	```
+	
+whether it is the same as the sequence number in the same position(the index number) in the array.
+
+	```javascript
+	function check(){
 		var correct = 0;
 		for(var i = 0; i < sequencePlayer.length; i++){
 			if(sequencePlayer[i] == sequence[i]){
 				correct++;				
-			}...```
-If all player's numbers are the same as these in the sequence(`if((correct > 0) && (correct == sequence.length))`), the player's array is emptied and the high score is updated if it is changed, the counter keeps the last sequence number, the color buttons are blocked and the plus button is unblocked. Players can continue the game until they lose.
+			}...
+	```
+	
+If all player's numbers are the same as these in the sequence `if((correct > 0) && (correct == sequence.length))`, the player's array is emptied and the high score is updated if it is changed, the counter keeps the last sequence number, the color buttons are blocked and the plus button is unblocked. Players can continue the game until they lose.
 
-During the player's turn (only then), the life points(`var click = 3;`) can be used (`var useLife = true;`)to see the sequence again.
+During the player's turn (only then), the life points `var click = 3` can be used `var useLife = true` to see the sequence again.
 
 The reset method is used when the player presses an incorrect button or presses the reset.
 The function `reset()` empties both arrays, blocks the color buttons, and the Play one, zeroes the counter.
@@ -122,7 +136,7 @@ The function `reset()` empties both arrays, blocks the color buttons, and the Pl
 
 There are a lot of possibilities to increase complexity of the game. 
 
-The difficulty could be increased by creating color button with the one color, decreasing the time of displaying the sequence, limiting the time for repeating the sequence.
+The difficulty could be increased by creating the color buttons with the one color, decreasing the time of displaying the sequence, limiting the time for repeating a sequence.
 
 I would create a multi-players mode. One of the way to play would be the ladder game:
 the first player repeats the sequence if they are correct, the game goes on and the second player does the same, the third player and so on. If the player is wrong, they get out of the game. The winner is the one who remains. 
@@ -150,30 +164,35 @@ Everything is like from the beginning except the saved score.
 
 The website can be open with the browsers:  Firefox (Version 70.0.1), Opera (Version 63.0.3), Internet Explorer (Version 11.0.9), Google Chrome (Version 77.0.3 ); responsive on mobiles, tablets, kindels.
 There were some issue in the Internet Explorer browser, the game neither work nor play the sounds. I could only use the Plus button. I needed to create a different "for" loop with the IIFE for the browser only:
-			```(function(index) {
+			```javascript
+			(function(index) {
 				setTimeout( function(){
 					flash(sequence[index]);
 					if(index == sequence.length-1){
-							on = true;...``` 
+							on = true;...
+			``` 
 For the sounds, I needed to use mp3 files. 
 
 ## Deployment
 
 The hosting platform for the site is Github Pages, deployed directly from the master branch.
 
-The landing page is `index.html`.
+The landing page is `index.html`
 
-You can run the website locally by cloning the repository or using this command in your terminal `git clone https://github.com/rafalq/Code-Institute-Project-2`.
+You can run the website locally by cloning the repository or using this command in your terminal `git clone https://github.com/rafalq/Code-Institute-Project-2`
   
 ## Credits
 
-###Content
+### Content
+
 I resolved the IE browser issue using this code snippet:
-for (var i = 1; i <= 10; i++){
-```(function(index) {
-		setTimeout(function() { alert(index); }, i*1000);
-		})(i);
-	}```
+		```javascript
+		for (var i = 1; i <= 10; i++){
+			(function(index) {
+				setTimeout(function() { alert(index); }, i*1000);
+			})(i);
+		}
+		```
 from [this](https://wsvincent.com/javascript-closure-settimeout-for-loop/) website.
 
 The modal code was copied from [W3Schools](https://www.w3schools.com/howto/howto_css_modals.asp)
@@ -182,7 +201,7 @@ The rest I corrected using Stack Overflow, however they were significantly modif
  
 ### Media
 
-The photos used in this site were obtained from [PEXELS](https://www.pexels.com/).
+The picture used in this site were obtained from [PEXELS](https://www.pexels.com/).
 
 ### Acknowledgements
 
