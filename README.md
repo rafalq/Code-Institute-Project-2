@@ -147,24 +147,45 @@ Another way would be to win with the highest score. A player plays until failure
 
 All tests for the game were run manually. 
 
-When I start the game all counter screens (the highest score and the sequence length)are empty. 
-All buttons, except the Plus, the Reset and the Rules button, are blocked. 
+When I start the game all counter screens (the highest score and the sequence length)are empty.
+
+All buttons, except the Plus, the Reset and the Rules button, are blocked.
+
 I press the Plus button and the middle screen displays 1, each click adds 1.
-After clicking the Play button, the sequence starts to run. 
+
+After clicking the Play button, the sequence starts to run.
+
 All buttons are blocked excluding the Reset and the Rules that always work.
+
 When the colors stop flashing, I press the Play and get the sequence to display again.
-1 point is subtracted from the life points number. When it is O, pressing the Play during my turn does nothing. 
+
+1 point is subtracted from the life points number. 
+When it is O, pressing the Play during my turn does nothing.
 The same as pushing the Plus until I press one of the Color buttons.
+
 If I repeat the sequence correctly, the highest score screen diplays the tick sign and my score is recorded.
+
 The Play is blocked, the Plus - unblocked.
-I check the Rules again. I press all the buttons - just the Plus and the Reset are active.
+
+I check the Rules again. 
+
+I press all the buttons - just the Plus and the Reset are active.
+
 I go on.
-I press the Reset. The sequence counter zeroes. My highest score is kept.
+
+I press the Reset. 
+
+The sequence counter zeroes. My highest score is kept.
+
 When I am inncorect with my sequence, the top screen displays the x sign and resets immediately.
-Everything is like from the beginning except the saved score.
+
+Everything is the same as at the beginning except the saved score.
 
 The website can be open with the browsers:  Firefox (Version 70.0.1), Opera (Version 63.0.3), Internet Explorer (Version 11.0.9), Google Chrome (Version 77.0.3 ); responsive on mobiles, tablets, kindels.
-There were some issue in the Internet Explorer browser, the game neither work nor play the sounds. I could only use the Plus button. I needed to create a different "for" loop with the IIFE for the browser only:
+
+There were some issue in the Internet Explorer browser, the game neither work nor play the sounds. 
+I could only use the Plus button. 
+I needed to create a different "for" loop with the IIFE for the browser only:
 
 ```javascript
 (function(index) {
