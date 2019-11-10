@@ -79,7 +79,7 @@ I used a sky image for the background and dark colors for the set buttons to cre
 
 ### Skeleton
 
-[Game wireframe](https://rafalq.github.io/Project-2-Memory-Game/blob/master/wireframes/home.jpg)
+[Game wireframe](https://rafalq.github.io/Code-Institute-Project-2/blob/master/wireframes/home.jpg)
 
 ## Technologies
 
@@ -163,7 +163,7 @@ The hosting platform for the site is Github Pages, deployed directly from the ma
 
 The landing page is `index.html`.
 
-You can run the website locally by cloning the repository or using this command in your terminal `git clone https://github.com/rafalq/Project-2-Memory-Game`.
+You can run the website locally by cloning the repository or using this command in your terminal `git clone https://github.com/rafalq/Code-Institute-Project-2`.
   
 ## Credits
 
